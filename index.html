@@ -1176,6 +1176,312 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Section Supplémentaire : Outils de Productivité Avancés -->
+                        <div style="margin-top: 32px; border-top: 2px solid var(--border-light); padding-top: 24px;">
+                            <h3 style="margin-bottom: 24px; color: var(--primary); text-align: center; font-size: 20px;"><i class="fas fa-rocket"></i> Outils de Productivité Avancés</h3>
+
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+                                <!-- Kanban Board -->
+                                <div class="result-card">
+                                    <h4 style="margin-bottom: 16px; color: var(--primary);"><i class="fas fa-columns"></i> Kanban Board</h4>
+                                    <div style="display: flex; gap: 12px; overflow-x: auto; padding-bottom: 12px;">
+                                        <div class="kanban-column" style="min-width: 200px; background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 12px; padding: 16px;">
+                                            <h5 style="margin: 0 0 12px 0; color: #92400e; font-size: 14px;">À Faire</h5>
+                                            <div class="kanban-card" style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                                <div style="font-weight: 600; font-size: 13px;">Chapitre 5 Maths</div>
+                                                <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">2h estimées</div>
+                                            </div>
+                                            <div class="kanban-card" style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                                <div style="font-weight: 600; font-size: 13px;">Révision Physique</div>
+                                                <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">1h 30min</div>
+                                            </div>
+                                        </div>
+                                        <div class="kanban-column" style="min-width: 200px; background: linear-gradient(135deg, #dbeafe, #bfdbfe); border-radius: 12px; padding: 16px;">
+                                            <h5 style="margin: 0 0 12px 0; color: #1e40af; font-size: 14px;">En Cours</h5>
+                                            <div class="kanban-card" style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                                <div style="font-weight: 600; font-size: 13px;">Exercices Algorithmes</div>
+                                                <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">45min restantes</div>
+                                            </div>
+                                        </div>
+                                        <div class="kanban-column" style="min-width: 200px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border-radius: 12px; padding: 16px;">
+                                            <h5 style="margin: 0 0 12px 0; color: #166534; font-size: 14px;">Terminé</h5>
+                                            <div class="kanban-card" style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); opacity: 0.7;">
+                                                <div style="font-weight: 600; font-size: 13px;">Quiz Histoire</div>
+                                                <div style="font-size: 11px; color: #10b981; margin-top: 4px;">✓ Complété</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn-primary" onclick="openKanbanBoard()" style="width: 100%; margin-top: 12px;"><i class="fas fa-plus"></i> Gérer les tâches</button>
+                                </div>
+
+                                <!-- Time Tracking -->
+                                <div class="result-card">
+                                    <h4 style="margin-bottom: 16px; color: var(--primary);"><i class="fas fa-stopwatch"></i> Time Tracking</h4>
+                                    <div style="text-align: center; margin-bottom: 20px;">
+                                        <div id="timerDisplay" style="font-size: 36px; font-weight: bold; color: var(--primary); font-family: monospace;">00:00:00</div>
+                                        <div style="font-size: 14px; color: var(--text-secondary); margin-top: 4px;">Session d'étude active</div>
+                                    </div>
+                                    <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                                        <button id="startTimerBtn" class="btn-primary" onclick="startTimer()" style="flex: 1;"><i class="fas fa-play"></i> Démarrer</button>
+                                        <button id="pauseTimerBtn" class="btn-outline" onclick="pauseTimer()" style="flex: 1; display: none;"><i class="fas fa-pause"></i> Pause</button>
+                                        <button id="stopTimerBtn" class="btn-outline" onclick="stopTimer()" style="flex: 1; display: none;"><i class="fas fa-stop"></i> Stop</button>
+                                    </div>
+                                    <div style="background: var(--bg-secondary); border-radius: 8px; padding: 12px;">
+                                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                            <span style="font-size: 14px;">Aujourd'hui</span>
+                                            <span style="font-size: 14px; font-weight: 600;">3h 45min</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span style="font-size: 14px;">Cette semaine</span>
+                                            <span style="font-size: 14px; font-weight: 600;">18h 30min</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Mood Tracking -->
+                                <div class="result-card">
+                                    <h4 style="margin-bottom: 16px; color: var(--primary);"><i class="fas fa-smile"></i> Suivi d'Humeur</h4>
+                                    <div style="text-align: center; margin-bottom: 16px;">
+                                        <div style="font-size: 18px; margin-bottom: 8px;">Comment te sens-tu aujourd'hui ?</div>
+                                        <div style="display: flex; justify-content: center; gap: 12px;">
+                                            <button class="mood-btn" onclick="setMood('très-mal')" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #ef4444; background: white; cursor: pointer; font-size: 18px;">😫</button>
+                                            <button class="mood-btn" onclick="setMood('mal')" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #f97316; background: white; cursor: pointer; font-size: 18px;">😕</button>
+                                            <button class="mood-btn" onclick="setMood('neutre')" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #eab308; background: white; cursor: pointer; font-size: 18px;">😐</button>
+                                            <button class="mood-btn" onclick="setMood('bien')" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #22c55e; background: white; cursor: pointer; font-size: 18px;">🙂</button>
+                                            <button class="mood-btn" onclick="setMood('excellent')" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #10b981; background: white; cursor: pointer; font-size: 18px;">😊</button>
+                                        </div>
+                                    </div>
+                                    <div style="background: var(--bg-secondary); border-radius: 8px; padding: 12px;">
+                                        <div style="font-size: 14px; margin-bottom: 8px;">Tendances récentes :</div>
+                                        <div style="display: flex; gap: 4px; justify-content: center;">
+                                            <span style="font-size: 16px;">🙂</span>
+                                            <span style="font-size: 16px;">😐</span>
+                                            <span style="font-size: 16px;">🙂</span>
+                                            <span style="font-size: 16px;">😊</span>
+                                            <span style="font-size: 16px;">🙂</span>
+                                            <span style="font-size: 16px;">😊</span>
+                                            <span style="font-size: 16px;">🙂</span>
+                                        </div>
+                                        <div style="font-size: 12px; color: var(--text-secondary); text-align: center; margin-top: 8px;">7 derniers jours</div>
+                                    </div>
+                                </div>
+
+                                <!-- Goal Milestones -->
+                                <div class="result-card">
+                                    <h4 style="margin-bottom: 16px; color: var(--primary);"><i class="fas fa-flag-checkered"></i> Jalons d'Objectifs</h4>
+                                    <div style="margin-bottom: 16px;">
+                                        <div style="font-weight: 600; margin-bottom: 12px;">Objectif: Obtenir 16/20 à l'examen final</div>
+                                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                                            <div class="milestone" style="display: flex; align-items: center; gap: 12px;">
+                                                <div style="width: 24px; height: 24px; border-radius: 50%; background: #10b981; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px;">✓</div>
+                                                <div>
+                                                    <div style="font-weight: 600; font-size: 14px;">Réviser tous les chapitres</div>
+                                                    <div style="font-size: 12px; color: var(--text-secondary);">Complété le 15 mars</div>
+                                                </div>
+                                            </div>
+                                            <div class="milestone" style="display: flex; align-items: center; gap: 12px;">
+                                                <div style="width: 24px; height: 24px; border-radius: 50%; background: #10b981; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px;">✓</div>
+                                                <div>
+                                                    <div style="font-weight: 600; font-size: 14px;">Faire 50 exercices</div>
+                                                    <div style="font-size: 12px; color: var(--text-secondary);">Complété le 20 mars</div>
+                                                </div>
+                                            </div>
+                                            <div class="milestone" style="display: flex; align-items: center; gap: 12px;">
+                                                <div style="width: 24px; height: 24px; border-radius: 50%; background: #f59e0b; border: 3px solid #f59e0b; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px;">●</div>
+                                                <div>
+                                                    <div style="font-weight: 600; font-size: 14px;">Simulations d'examen</div>
+                                                    <div style="font-size: 12px; color: var(--text-secondary);">En cours - 3/5 terminées</div>
+                                                </div>
+                                            </div>
+                                            <div class="milestone" style="display: flex; align-items: center; gap: 12px;">
+                                                <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--bg-secondary); border: 2px solid var(--border-light); display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-size: 12px;">○</div>
+                                                <div>
+                                                    <div style="font-weight: 600; font-size: 14px;">Révision finale</div>
+                                                    <div style="font-size: 12px; color: var(--text-secondary);">À venir</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn-primary" onclick="addMilestone()" style="width: 100%;"><i class="fas fa-plus"></i> Ajouter un jalon</button>
+                                </div>
+
+                                <!-- Collaboration & Partage -->
+                                <div class="result-card">
+                                    <h4 style="margin-bottom: 16px; color: var(--primary);"><i class="fas fa-users"></i> Collaboration</h4>
+                                    <div style="margin-bottom: 16px;">
+                                        <div style="font-size: 14px; margin-bottom: 12px;">Étudie avec tes amis :</div>
+                                        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
+                                            <div class="collaborator" style="display: flex; align-items: center; gap: 8px; background: var(--bg-secondary); padding: 8px 12px; border-radius: 20px;">
+                                                <div style="width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold;">SM</div>
+                                                <span style="font-size: 14px;">Sarah M.</span>
+                                            </div>
+                                            <div class="collaborator" style="display: flex; align-items: center; gap: 8px; background: var(--bg-secondary); padding: 8px 12px; border-radius: 20px;">
+                                                <div style="width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold;">JL</div>
+                                                <span style="font-size: 14px;">Jean L.</span>
+                                            </div>
+                                            <button class="btn-outline" onclick="addCollaborator()" style="padding: 8px 12px; border-radius: 20px; font-size: 14px;"><i class="fas fa-plus"></i> Inviter</button>
+                                        </div>
+                                        <div style="background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border-radius: 8px; padding: 12px;">
+                                            <div style="font-size: 14px; font-weight: 600; color: #0369a1; margin-bottom: 4px;">Session d'étude de groupe</div>
+                                            <div style="font-size: 12px; color: #0369a1;">Demain 14h00 - Maths Chapitre 7</div>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; gap: 8px;">
+                                        <button class="btn-outline" onclick="shareProgress()" style="flex: 1;"><i class="fas fa-share"></i> Partager</button>
+                                        <button class="btn-outline" onclick="joinStudyGroup()" style="flex: 1;"><i class="fas fa-users"></i> Rejoindre</button>
+                                    </div>
+                                </div>
+
+                                <!-- Export & Import -->
+                                <div class="result-card">
+                                    <h4 style="margin-bottom: 16px; color: var(--primary);"><i class="fas fa-download"></i> Sauvegarde & Synchronisation</h4>
+                                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                                        <button class="btn-outline" onclick="exportData()" style="width: 100%; justify-content: flex-start;">
+                                            <i class="fas fa-file-export" style="margin-right: 8px;"></i> Exporter mes données
+                                        </button>
+                                        <button class="btn-outline" onclick="importData()" style="width: 100%; justify-content: flex-start;">
+                                            <i class="fas fa-file-import" style="margin-right: 8px;"></i> Importer des données
+                                        </button>
+                                        <button class="btn-outline" onclick="syncWithCloud()" style="width: 100%; justify-content: flex-start;">
+                                            <i class="fas fa-cloud" style="margin-right: 8px;"></i> Synchroniser avec le cloud
+                                        </button>
+                                        <button class="btn-outline" onclick="backupData()" style="width: 100%; justify-content: flex-start;">
+                                            <i class="fas fa-save" style="margin-right: 8px;"></i> Sauvegarde automatique
+                                        </button>
+                                    </div>
+                                    <div style="margin-top: 16px; padding: 12px; background: var(--bg-secondary); border-radius: 8px;">
+                                        <div style="font-size: 12px; color: var(--text-secondary); text-align: center;">
+                                            Dernière sauvegarde: Aujourd'hui 10:30
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Thèmes Personnalisés -->
+                                <div class="result-card">
+                                    <h4 style="margin-bottom: 16px; color: var(--primary);"><i class="fas fa-palette"></i> Personnalisation</h4>
+                                    <div style="margin-bottom: 16px;">
+                                        <div style="font-size: 14px; margin-bottom: 12px;">Choisis ton thème :</div>
+                                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                            <button class="theme-btn" onclick="setTheme('default')" style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border: 3px solid var(--accent); cursor: pointer;"></button>
+                                            <button class="theme-btn" onclick="setTheme('dark')" style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #1f2937, #111827); border: 2px solid var(--border-light); cursor: pointer;"></button>
+                                            <button class="theme-btn" onclick="setTheme('nature')" style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); border: 2px solid var(--border-light); cursor: pointer;"></button>
+                                            <button class="theme-btn" onclick="setTheme('sunset')" style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #f97316, #ea580c); border: 2px solid var(--border-light); cursor: pointer;"></button>
+                                            <button class="theme-btn" onclick="setTheme('ocean')" style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #06b6d4, #0891b2); border: 2px solid var(--border-light); cursor: pointer;"></button>
+                                            <button class="theme-btn" onclick="setTheme('purple')" style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6, #7c3aed); border: 2px solid var(--border-light); cursor: pointer;"></button>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                                        <label style="font-size: 14px;">Notifications sonores :</label>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <input type="checkbox" id="soundNotifications" checked style="width: 16px; height: 16px;">
+                                            <label for="soundNotifications" style="font-size: 14px;">Activées</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Analytics Prédictifs -->
+                                <div class="result-card">
+                                    <h4 style="margin-bottom: 16px; color: var(--primary);"><i class="fas fa-brain"></i> Insights IA</h4>
+                                    <div style="margin-bottom: 16px;">
+                                        <div style="background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+                                            <div style="font-size: 16px; font-weight: 600; color: #0369a1; margin-bottom: 8px;"><i class="fas fa-lightbulb"></i> Insight du jour</div>
+                                            <div style="font-size: 14px; color: #0369a1;">Tu es plus productif le matin. Essaie de planifier tes sessions d'étude importantes avant 14h !</div>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--bg-secondary); border-radius: 8px;">
+                                                <div>
+                                                    <div style="font-weight: 600; font-size: 14px;">Prévision réussite</div>
+                                                    <div style="font-size: 12px; color: var(--text-secondary);">Examen final</div>
+                                                </div>
+                                                <div style="text-align: right;">
+                                                    <div style="font-size: 18px; font-weight: bold; color: #10b981;">87%</div>
+                                                    <div style="font-size: 12px; color: var(--text-secondary);">+5% cette semaine</div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--bg-secondary); border-radius: 8px;">
+                                                <div>
+                                                    <div style="font-weight: 600; font-size: 14px;">Rythme optimal</div>
+                                                    <div style="font-size: 12px; color: var(--text-secondary);">Heures d'étude/jour</div>
+                                                </div>
+                                                <div style="text-align: right;">
+                                                    <div style="font-size: 18px; font-weight: bold; color: var(--primary);">2h 30min</div>
+                                                    <div style="font-size: 12px; color: var(--text-secondary);">Recommandé</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn-primary" onclick="viewDetailedInsights()" style="width: 100%;"><i class="fas fa-chart-line"></i> Voir tous les insights</button>
+                                </div>
+
+                                <!-- Intégration Calendrier -->
+                                <div class="result-card">
+                                    <h4 style="margin-bottom: 16px; color: var(--primary);"><i class="fas fa-calendar-alt"></i> Calendrier Intégré</h4>
+                                    <div style="margin-bottom: 16px;">
+                                        <div style="background: var(--bg-secondary); border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+                                            <div style="text-align: center; margin-bottom: 12px;">
+                                                <div style="font-size: 18px; font-weight: bold;">Avril 2026</div>
+                                            </div>
+                                            <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; font-size: 12px; margin-bottom: 8px;">
+                                                <div>L</div><div>M</div><div>M</div><div>J</div><div>V</div><div>S</div><div>D</div>
+                                            </div>
+                                            <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;">
+                                                <div style="padding: 8px; border-radius: 6px;"></div>
+                                                <div style="padding: 8px; border-radius: 6px;"></div>
+                                                <div style="padding: 8px; border-radius: 6px;"></div>
+                                                <div style="padding: 8px; border-radius: 6px;"></div>
+                                                <div style="padding: 8px; border-radius: 6px;"></div>
+                                                <div style="padding: 8px; border-radius: 6px;"></div>
+                                                <div style="padding: 8px; border-radius: 6px; background: var(--accent); color: white; font-weight: bold;">9</div>
+                                                <div style="padding: 8px; border-radius: 6px;">10</div>
+                                                <div style="padding: 8px; border-radius: 6px; background: #10b981; color: white;">11</div>
+                                                <div style="padding: 8px; border-radius: 6px;">12</div>
+                                                <div style="padding: 8px; border-radius: 6px; background: #f59e0b; color: white;">13</div>
+                                                <div style="padding: 8px; border-radius: 6px;">14</div>
+                                                <div style="padding: 8px; border-radius: 6px;">15</div>
+                                            </div>
+                                        </div>
+                                        <div style="font-size: 14px; margin-bottom: 12px;">Événements aujourd'hui :</div>
+                                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                                            <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 6px;">
+                                                <div style="width: 8px; height: 8px; border-radius: 50%; background: #f59e0b;"></div>
+                                                <div style="font-size: 13px;">Révision Maths - 14h00</div>
+                                            </div>
+                                            <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border-radius: 6px;">
+                                                <div style="width: 8px; height: 8px; border-radius: 50%; background: #10b981;"></div>
+                                                <div style="font-size: 13px;">Session groupe - 16h30</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn-primary" onclick="openCalendar()" style="width: 100%;"><i class="fas fa-calendar-plus"></i> Planifier un événement</button>
+                                </div>
+
+                                <!-- Notifications Intelligentes -->
+                                <div class="result-card">
+                                    <h4 style="margin-bottom: 16px; color: var(--primary);"><i class="fas fa-bell-ring"></i> Notifications IA</h4>
+                                    <div style="margin-bottom: 16px;">
+                                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                                            <div class="smart-notification" style="padding: 12px; background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 8px; border-left: 4px solid #f59e0b;">
+                                                <div style="font-weight: 600; font-size: 14px; color: #92400e; margin-bottom: 4px;"><i class="fas fa-clock"></i> Pause recommandée</div>
+                                                <div style="font-size: 13px; color: #92400e;">Tu étudies depuis 2h. Fais une pause de 10min pour optimiser ta concentration !</div>
+                                            </div>
+                                            <div class="smart-notification" style="padding: 12px; background: linear-gradient(135deg, #dbeafe, #bfdbfe); border-radius: 8px; border-left: 4px solid #3b82f6;">
+                                                <div style="font-weight: 600; font-size: 14px; color: #1e40af; margin-bottom: 4px;"><i class="fas fa-trophy"></i> Objectif atteint !</div>
+                                                <div style="font-size: 13px; color: #1e40af;">Félicitations ! Tu as complété ta série de 7 jours d'étude active.</div>
+                                            </div>
+                                            <div class="smart-notification" style="padding: 12px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border-radius: 8px; border-left: 4px solid #10b981;">
+                                                <div style="font-weight: 600; font-size: 14px; color: #166534; margin-bottom: 4px;"><i class="fas fa-brain"></i> Conseil d'étude</div>
+                                                <div style="font-size: 13px; color: #166534;">Essaie la technique Pomodoro : 25min d'étude + 5min de pause pour améliorer ta productivité.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; gap: 8px;">
+                                        <button class="btn-outline" onclick="configureNotifications()" style="flex: 1;"><i class="fas fa-cog"></i> Configurer</button>
+                                        <button class="btn-outline" onclick="viewAllNotifications()" style="flex: 1;"><i class="fas fa-list"></i> Toutes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1847,6 +2153,361 @@ Continue comme ça ! 💪
     function filterReflections(tag) {
         // Simulation de filtrage - dans une vraie implémentation, on filtrerait les réflexions
         showNotification(`Filtrage par #${tag} - Fonctionnalité à développer`);
+    }
+
+    // ===== NOUVELLES FONCTIONS POUR LES OUTILS AVANCÉS =====
+
+    // Kanban Board
+    function openKanbanBoard() {
+        showNotification('Ouverture du Kanban Board - Fonctionnalité complète à développer');
+    }
+
+    // Time Tracking
+    let timerInterval = null;
+    let timerSeconds = 0;
+    let timerRunning = false;
+
+    function startTimer() {
+        if (!timerRunning) {
+            timerRunning = true;
+            document.getElementById('startTimerBtn').style.display = 'none';
+            document.getElementById('pauseTimerBtn').style.display = 'inline-block';
+            document.getElementById('stopTimerBtn').style.display = 'inline-block';
+
+            timerInterval = setInterval(() => {
+                timerSeconds++;
+                updateTimerDisplay();
+            }, 1000);
+
+            showNotification('Chronomètre démarré !');
+        }
+    }
+
+    function pauseTimer() {
+        if (timerRunning) {
+            timerRunning = false;
+            clearInterval(timerInterval);
+            document.getElementById('startTimerBtn').style.display = 'inline-block';
+            document.getElementById('pauseTimerBtn').style.display = 'none';
+            showNotification('Chronomètre en pause');
+        }
+    }
+
+    function stopTimer() {
+        if (timerRunning || timerSeconds > 0) {
+            timerRunning = false;
+            clearInterval(timerInterval);
+
+            // Sauvegarder la session
+            const sessionTime = timerSeconds;
+            const today = new Date().toISOString().split('T')[0];
+            const existingTime = parseInt(localStorage.getItem(`study_time_${today}`) || '0');
+            localStorage.setItem(`study_time_${today}`, existingTime + sessionTime);
+
+            // Reset timer
+            timerSeconds = 0;
+            updateTimerDisplay();
+
+            document.getElementById('startTimerBtn').style.display = 'inline-block';
+            document.getElementById('pauseTimerBtn').style.display = 'none';
+            document.getElementById('stopTimerBtn').style.display = 'none';
+
+            const minutes = Math.floor(sessionTime / 60);
+            const seconds = sessionTime % 60;
+            showNotification(`Session terminée : ${minutes}min ${seconds}s sauvegardée !`);
+        }
+    }
+
+    function updateTimerDisplay() {
+        const hours = Math.floor(timerSeconds / 3600);
+        const minutes = Math.floor((timerSeconds % 3600) / 60);
+        const seconds = timerSeconds % 60;
+
+        const display = document.getElementById('timerDisplay');
+        if (display) {
+            display.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+    }
+
+    // Mood Tracking
+    function setMood(mood) {
+        const today = new Date().toISOString().split('T')[0];
+        localStorage.setItem(`mood_${today}`, mood);
+
+        // Animation des boutons
+        const moodBtns = document.querySelectorAll('.mood-btn');
+        moodBtns.forEach(btn => {
+            btn.style.transform = 'scale(1)';
+            btn.style.borderColor = '';
+        });
+
+        // Mettre en évidence le bouton sélectionné
+        event.target.style.transform = 'scale(1.2)';
+        event.target.style.borderColor = 'var(--accent)';
+
+        const moodEmojis = {
+            'très-mal': '😫',
+            'mal': '😕',
+            'neutre': '😐',
+            'bien': '🙂',
+            'excellent': '😊'
+        };
+
+        showNotification(`Humeur enregistrée : ${moodEmojis[mood]}`);
+    }
+
+    // Goal Milestones
+    function addMilestone() {
+        const milestoneName = prompt('Nom du jalon :');
+        const milestoneDesc = prompt('Description :');
+
+        if (milestoneName && milestoneDesc) {
+            showNotification('Nouveau jalon ajouté à développer dans l\'interface');
+        }
+    }
+
+    // Collaboration
+    function addCollaborator() {
+        const email = prompt('Email de la personne à inviter :');
+        if (email) {
+            showNotification(`Invitation envoyée à ${email}`);
+        }
+    }
+
+    function shareProgress() {
+        const shareText = `Voici mes progrès d'étude :\n🎯 Motivation: 85%\n📚 Temps d'étude: 42h ce mois\n🔥 Série active: 7 jours\n\nRejoins-moi sur SuperEdu !`;
+        navigator.clipboard.writeText(shareText).then(() => {
+            showNotification('Progrès copié dans le presse-papiers !');
+        });
+    }
+
+    function joinStudyGroup() {
+        showNotification('Recherche de groupes d\'étude à proximité...');
+    }
+
+    // Export & Import
+    function exportData() {
+        const data = {
+            goals: [],
+            habits: {},
+            journal: {},
+            reflections: {},
+            mood: {},
+            studyTime: {},
+            timestamp: new Date().toISOString()
+        };
+
+        // Collecter toutes les données du localStorage
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            const value = localStorage.getItem(key);
+
+            if (key.startsWith('goal_')) data.goals.push({ id: key, content: value });
+            else if (key.startsWith('habit_')) data.habits[key] = value;
+            else if (key.startsWith('journal_')) data.journal[key] = value;
+            else if (key.startsWith('reflection_')) data.reflections[key] = value;
+            else if (key.startsWith('mood_')) data.mood[key] = value;
+            else if (key.startsWith('study_time_')) data.studyTime[key] = value;
+        }
+
+        const dataStr = JSON.stringify(data, null, 2);
+        const blob = new Blob([dataStr], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `superedu_backup_${new Date().toISOString().split('T')[0]}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        showNotification('Données exportées avec succès !');
+    }
+
+    function importData() {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.json';
+
+        input.onchange = function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const data = JSON.parse(e.target.result);
+
+                        // Importer les données
+                        let importedCount = 0;
+                        Object.keys(data).forEach(category => {
+                            if (typeof data[category] === 'object') {
+                                Object.keys(data[category]).forEach(key => {
+                                    localStorage.setItem(key, data[category][key]);
+                                    importedCount++;
+                                });
+                            }
+                        });
+
+                        showNotification(`${importedCount} éléments importés avec succès !`);
+                        location.reload(); // Recharger pour afficher les nouvelles données
+                    } catch (error) {
+                        showNotification('Erreur lors de l\'importation du fichier');
+                    }
+                };
+                reader.readAsText(file);
+            }
+        };
+
+        input.click();
+    }
+
+    function syncWithCloud() {
+        showNotification('Synchronisation avec le cloud - Fonctionnalité cloud à développer');
+    }
+
+    function backupData() {
+        const timestamp = new Date().toISOString();
+        localStorage.setItem('last_backup', timestamp);
+        showNotification('Sauvegarde effectuée automatiquement');
+    }
+
+    // Thèmes personnalisés
+    function setTheme(themeName) {
+        const themes = {
+            default: {
+                primary: '#1e40af',
+                accent: '#3b82f6',
+                bg_primary: '#ffffff',
+                bg_secondary: '#f8fafc',
+                text_primary: '#1e293b',
+                text_secondary: '#64748b',
+                border_light: '#e2e8f0'
+            },
+            dark: {
+                primary: '#f1f5f9',
+                accent: '#60a5fa',
+                bg_primary: '#0f172a',
+                bg_secondary: '#1e293b',
+                text_primary: '#f8fafc',
+                text_secondary: '#cbd5e1',
+                border_light: '#334155'
+            },
+            nature: {
+                primary: '#166534',
+                accent: '#22c55e',
+                bg_primary: '#f0fdf4',
+                bg_secondary: '#dcfce7',
+                text_primary: '#14532d',
+                text_secondary: '#166534',
+                border_light: '#bbf7d0'
+            },
+            sunset: {
+                primary: '#9a3412',
+                accent: '#ea580c',
+                bg_primary: '#fff7ed',
+                bg_secondary: '#fed7aa',
+                text_primary: '#9a3412',
+                text_secondary: '#c2410c',
+                border_light: '#fdba74'
+            },
+            ocean: {
+                primary: '#164e63',
+                accent: '#06b6d4',
+                bg_primary: '#ecfeff',
+                bg_secondary: '#cffafe',
+                text_primary: '#164e63',
+                text_secondary: '#155e75',
+                border_light: '#a5f3fc'
+            },
+            purple: {
+                primary: '#581c87',
+                accent: '#a855f7',
+                bg_primary: '#faf5ff',
+                bg_secondary: '#e9d5ff',
+                text_primary: '#581c87',
+                text_secondary: '#7c2d92',
+                border_light: '#d8b4fe'
+            }
+        };
+
+        if (themes[themeName]) {
+            const theme = themes[themeName];
+            const root = document.documentElement;
+
+            Object.keys(theme).forEach(prop => {
+                root.style.setProperty(`--${prop.replace(/_/g, '-')}`, theme[prop]);
+            });
+
+            localStorage.setItem('selected_theme', themeName);
+            showNotification(`Thème "${themeName}" appliqué !`);
+        }
+    }
+
+    // Charger le thème sauvegardé au démarrage
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('selected_theme');
+        if (savedTheme) {
+            setTheme(savedTheme);
+        }
+    });
+
+    // Analytics prédictifs
+    function viewDetailedInsights() {
+        const insights = `
+🤖 INSIGHTS IA DÉTAILLÉS
+
+📈 PRÉDICTIONS DE PERFORMANCE
+• Taux de réussite examen final : 87%
+• Probabilité d'atteindre tes objectifs : 92%
+• Temps optimal d'étude quotidien : 2h 30min
+
+🎯 ANALYSE DE PRODUCTIVITÉ
+• Meilleur créneau : 9h00 - 14h00
+• Technique la plus efficace : Pomodoro
+• Matière à renforcer : Algorithmes
+
+💡 RECOMMANDATIONS PERSONNALISÉES
+• Augmente tes pauses de 5min toutes les 25min
+• Alterne théorie et exercices pratiques
+• Revois les concepts fondamentaux avant les examens
+
+🔥 MOTIVATION
+• Tu as dépassé tes objectifs de 15% ce mois
+• Série actuelle de 7 jours battue !
+• Tu es dans le top 10% des étudiants actifs
+
+Continue comme ça ! 🚀
+        `;
+        alert(insights);
+    }
+
+    // Intégration Calendrier
+    function openCalendar() {
+        showNotification('Ouverture du calendrier intégré - Fonctionnalité à développer');
+    }
+
+    // Notifications Intelligentes
+    function configureNotifications() {
+        showNotification('Configuration des notifications - Fonctionnalité à développer');
+    }
+
+    function viewAllNotifications() {
+        const notifications = [
+            'Pause recommandée après 2h d\'étude',
+            'Objectif quotidien atteint !',
+            'Nouveau badge débloqué : "Étudiant Modèle"',
+            'Conseil : Essaie la technique Feynman',
+            'Rappel : Session de groupe demain',
+            'Félicitations : 30 jours d\'activité !'
+        ];
+
+        let notificationText = '🔔 Toutes vos notifications :\n\n';
+        notifications.forEach((notif, index) => {
+            notificationText += `${index + 1}. ${notif}\n`;
+        });
+
+        alert(notificationText);
     }
 
     </script>
