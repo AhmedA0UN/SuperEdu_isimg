@@ -881,6 +881,9 @@
                             <input id="simHours" type="number" min="1" max="40" placeholder="Heures / semaine" style="padding:12px 16px; border-radius:24px; border:1px solid var(--border-light); width:100%; margin-bottom:12px;">
                             <button id="simulateBtnModule" class="btn-primary">Simuler mon parcours</button>
                             <div class="cv-generator" style="margin-top:18px; display:grid; gap:12px;">
+                                <label for="simCVFile" style="font-size:0.95rem; color:var(--text-secondary);">Importer un CV PDF (optionnel)</label>
+                                <input id="simCVFile" type="file" accept="application/pdf" style="padding:12px 16px; border-radius:24px; border:1px solid var(--border-light); width:100%; margin-bottom:4px;">
+                                <div id="simCVFileName" style="font-size:12px; color:var(--text-secondary); min-height:18px;"></div>
                                 <textarea id="simCVInput" placeholder="Copie/colle ton CV ou écris un résumé ici..." style="min-height:140px; padding:16px; border-radius:24px; border:1px solid var(--border-light); width:100%; resize:vertical;"></textarea>
                                 <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between;">
                                     <button class="btn-outline" onclick="generateCV()" style="flex:1; min-width:160px;">Générer mon CV</button>
@@ -2428,6 +2431,7 @@
 
         const cvTemplate = document.getElementById('simCVTemplate').value;
         const templateDescription = cvTemplates[cvTemplate];
+        const cvFileName = document.getElementById('simCVFileName').textContent || '';
 
         resDiv.innerHTML = `
             <h4>🔮 Parcours suggéré</h4>
@@ -2463,6 +2467,7 @@
                 <div style="font-weight:600; margin-bottom:10px;">Focus CV :</div>
                 <p style="margin:0;">${cvFocus} — ${cvTips[cvFocus]}</p>
                 <p style="margin:10px 0 0; color: var(--text-secondary);"><strong>Modèle CV :</strong> ${cvTemplate} — ${templateDescription}</p>
+                ${cvFileName ? `<p style="margin:10px 0 0; color: var(--text-secondary);"><strong>Fichier PDF chargé :</strong> ${cvFileName}</p>` : ''}
             </div>
         `;
         resDiv.style.display = 'block';
@@ -2477,7 +2482,8 @@
         const cvTemplate = document.getElementById('simCVTemplate').value;
         const industry = document.getElementById('simIndustry').value || 'secteur cible';
         const hours = parseInt(document.getElementById('simHours').value, 10) || 8;
-        const generated = `Résumé professionnel :\n${level} motivé(e) spécialisé(e) en ${skill} dans ${domain}, avec une orientation vers ${goal.toLowerCase()} dans ${industry}.\n\nCompétences clés : ${skill}, communication, organisation, ${cvFocus.toLowerCase()}.\n\nExpérience : Projet de ${domain.toLowerCase()} axé sur la résolution de problèmes, collaboration d'équipe et amélioration continue.\n\nFormation : Formation liée à ${domain} et certifications ciblées pour le secteur.\n\nObjectif : Développer un parcours professionnel efficace en ${goal.toLowerCase()} tout en maximisant ${cvTemplate.toLowerCase()} et l'optimisation ATS.`;
+        const cvFileName = document.getElementById('simCVFile').files[0]?.name || '';
+        const generated = `Résumé professionnel :\n${level} motivé(e) spécialisé(e) en ${skill} dans ${domain}, avec une orientation vers ${goal.toLowerCase()} dans ${industry}.\n\nCompétences clés : ${skill}, communication, organisation, ${cvFocus.toLowerCase()}.\n\nExpérience : Projet de ${domain.toLowerCase()} axé sur la résolution de problèmes, collaboration d'équipe et amélioration continue.\n\nFormation : Formation liée à ${domain} et certifications ciblées pour le secteur.\n\nObjectif : Développer un parcours professionnel efficace en ${goal.toLowerCase()} tout en maximisant ${cvTemplate.toLowerCase()} et l'optimisation ATS.\n${cvFileName ? `\nDocument joint : ${cvFileName}` : ''}`;
         document.getElementById('simCVInput').value = generated;
         showNotification('CV généré dans le champ de texte.');
     }
@@ -2488,15 +2494,28 @@
             alert('Veuillez entrer ou générer un CV pour l\'évaluation.');
             return;
         }
-        const keywords = ['skills', 'compétences', 'expérience', 'projet', 'formation', 'certification', 'CV', 'résumé', 'ATS', 'compétences', 'résultats'];
+        const cvFileName = document.getElementById('simCVFile').files[0]?.name || '';
+        const keywords = ['skills', 'compétences', 'expérience', 'projet', 'formation', 'certification', 'CV', 'résumé', 'ATS', 'résultats', 'gestion', 'leadership'];
         const score = Math.min(100, Math.max(20, Math.round((keywords.reduce((count, word) => count + (cvText.toLowerCase().includes(word) ? 1 : 0), 0) / keywords.length) * 100)));
         const missing = keywords.filter(word => !cvText.toLowerCase().includes(word));
         const feedback = missing.length === 0
             ? 'Excellent CV : il inclut les éléments essentiels attendus par un recruteur et un ATS.'
             : `Améliore le CV en ajoutant : ${missing.slice(0, 4).join(', ')}${missing.length > 4 ? ', ...' : ''}.`;
-        const result = `Score CV : ${score}/100\n${feedback}`;
+        const fileNote = cvFileName ? `\nPDF détecté : ${cvFileName}. Assure-toi que le fichier est bien lisible et compatible.` : '\nAucun PDF joint. Tu peux ajouter ton CV en PDF pour un meilleur suivi.';
+        const result = `Score CV : ${score}/100\n${feedback}${fileNote}`;
         alert(result);
     }
+
+    document.getElementById('simCVFile').addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        const label = document.getElementById('simCVFileName');
+        if (file) {
+            label.textContent = `PDF chargé : ${file.name}`;
+            showNotification(`PDF ${file.name} chargé avec succès.`);
+        } else {
+            label.textContent = '';
+        }
+    });
 
     // Chat mentor
     const chatDiv = document.getElementById('chatMessagesModule');
