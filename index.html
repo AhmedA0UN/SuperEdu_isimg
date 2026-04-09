@@ -854,8 +854,15 @@
                         <span class="badge" style="font-size:13px; padding:8px 14px;">Quiz personnalisé</span>
                     </div>
 
+                    <!-- Bouton pour accéder au Quiz Personnalisé -->
+                    <div style="margin-bottom:20px;">
+                        <button class="btn-primary" onclick="toggleCustomQuiz()" id="customQuizBtn" style="width:100%; padding:14px; font-size:16px; font-weight:600;">
+                            🎯 Créer un Quiz Personnalisé
+                        </button>
+                    </div>
+
                     <!-- Configuration Quiz Personnalisé -->
-                    <div id="customQuizConfig" style="background:#f8fafc; border-radius:20px; padding:20px; margin-bottom:20px; border:1px solid rgba(59,130,246,0.18);">
+                    <div id="customQuizConfig" style="background:#f8fafc; border-radius:20px; padding:20px; margin-bottom:20px; border:1px solid rgba(59,130,246,0.18); display:none;">
                         <h4 style="margin-bottom:16px; color:#1e293b;">🎯 Configure ton Quiz Personnalisé</h4>
                         <div style="display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
                             <div>
@@ -3905,6 +3912,23 @@ Continue comme ça ! 🚀
         randomOrder: true,
         saveProgress: true
     };
+
+    function toggleCustomQuiz() {
+        const configDiv = document.getElementById('customQuizConfig');
+        const btn = document.getElementById('customQuizBtn');
+
+        if (configDiv.style.display === 'none' || configDiv.style.display === '') {
+            configDiv.style.display = 'block';
+            btn.innerHTML = '❌ Fermer la Configuration';
+            btn.className = 'btn-secondary';
+            showNotification('Configuration du quiz personnalisé ouverte');
+        } else {
+            configDiv.style.display = 'none';
+            btn.innerHTML = '🎯 Créer un Quiz Personnalisé';
+            btn.className = 'btn-primary';
+            showNotification('Configuration du quiz personnalisé fermée');
+        }
+    }
 
     function startCustomQuiz() {
         // Récupérer les valeurs du formulaire
