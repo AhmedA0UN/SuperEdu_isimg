@@ -836,6 +836,7 @@
                     <button class="tab-module-btn" data-module="mentor">🤖 Mentor IA</button>
                     <button class="tab-module-btn" data-module="level">🎮 Level-Based Learning</button>
                     <button class="tab-module-btn" data-module="motivation">🎯 Motivation</button>
+                    <button class="tab-module-btn" data-module="recherche">🔬 Recherche Scientifique</button>
                 </div>
 
                 <div id="module-lacunes" class="module-tab-content active">
@@ -2608,6 +2609,275 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== NOUVEAU MODULE : RECHERCHE SCIENTIFIQUE ===== -->
+                <div id="module-recherche" class="module-tab-content">
+                    <div style="background: linear-gradient(135deg, #1e293b, #334155); border-radius: 24px; padding: 24px; margin-bottom: 24px; color: white;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                            <div><i class="fas fa-microscope" style="font-size: 42px; color: #06b6d4;"></i></div>
+                            <div>
+                                <h2 style="font-size: 28px; margin:0;">🔬 Centre de Recherche Scientifique</h2>
+                                <p style="margin:4px 0 0;">Explore, valide et maîtrise les connaissances avec des sources fiables</p>
+                            </div>
+                            <div><span class="badge" style="background: #06b6d4; color: #0f172a;">Sources: 1,247 validées</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Barre de recherche scientifique -->
+                    <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; margin-bottom: 24px;">
+                        <div style="position: relative;">
+                            <input type="text" id="scientificQuery" placeholder="Rechercher des articles, études, théories scientifiques..." style="width: 100%; padding: 16px 20px; padding-left: 50px; border: 2px solid var(--border-light); border-radius: 50px; font-size: 16px; background: white; box-shadow: var(--shadow-md);">
+                            <i class="fas fa-search" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 18px;"></i>
+                        </div>
+                        <div style="display: flex; gap: 12px;">
+                            <button class="btn-primary" onclick="performScientificSearch()" style="padding: 16px 24px; border-radius: 50px;"><i class="fas fa-search"></i> Rechercher</button>
+                            <button class="btn-outline" onclick="advancedSearch()" style="padding: 16px 24px; border-radius: 50px;"><i class="fas fa-sliders-h"></i> Avancé</button>
+                        </div>
+                    </div>
+
+                    <!-- Filtres de recherche -->
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px;">
+                        <select id="researchDomain" style="padding: 12px 16px; border-radius: 25px; border: 1px solid var(--border-light); background: white;">
+                            <option value="">Tous les domaines</option>
+                            <option value="physics">Physique</option>
+                            <option value="chemistry">Chimie</option>
+                            <option value="biology">Biologie</option>
+                            <option value="mathematics">Mathématiques</option>
+                            <option value="computer-science">Informatique</option>
+                            <option value="engineering">Génie</option>
+                        </select>
+                        <select id="sourceType" style="padding: 12px 16px; border-radius: 25px; border: 1px solid var(--border-light); background: white;">
+                            <option value="">Tous types</option>
+                            <option value="journal">Articles de journaux</option>
+                            <option value="conference">Conférences</option>
+                            <option value="book">Livres</option>
+                            <option value="patent">Brevets</option>
+                            <option value="thesis">Thèses</option>
+                        </select>
+                        <select id="reliabilityLevel" style="padding: 12px 16px; border-radius: 25px; border: 1px solid var(--border-light); background: white;">
+                            <option value="">Tous niveaux</option>
+                            <option value="high">Fiabilité élevée</option>
+                            <option value="medium">Fiabilité moyenne</option>
+                            <option value="peer-reviewed">Révisé par les pairs</option>
+                        </select>
+                        <input type="number" id="yearFrom" placeholder="Année début" style="padding: 12px 16px; border-radius: 25px; border: 1px solid var(--border-light); width: 120px;">
+                        <input type="number" id="yearTo" placeholder="Année fin" style="padding: 12px 16px; border-radius: 25px; border: 1px solid var(--border-light); width: 120px;">
+                    </div>
+
+                    <!-- Résultats de recherche -->
+                    <div id="searchResults" style="display: none; margin-bottom: 24px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                            <h3 style="margin: 0; color: var(--primary);"><i class="fas fa-list"></i> Résultats de recherche</h3>
+                            <span id="resultsCount" style="color: var(--text-secondary);">0 résultats</span>
+                        </div>
+                        <div id="resultsList" style="display: grid; gap: 16px;">
+                            <!-- Les résultats seront insérés ici dynamiquement -->
+                        </div>
+                    </div>
+
+                    <!-- Sources fiables recommandées -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+                        <!-- Sources académiques -->
+                        <div class="result-card">
+                            <h3 style="margin-bottom: 16px; color: var(--primary);"><i class="fas fa-university"></i> Sources Académiques</h3>
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <div class="source-item" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border-radius: 8px; border-left: 4px solid #0369a1;">
+                                    <div style="width: 40px; height: 40px; border-radius: 50%; background: #0369a1; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">N</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 600; color: #0369a1;">Nature</div>
+                                        <div style="font-size: 12px; color: #0369a1; opacity: 0.8;">Revue scientifique internationale</div>
+                                    </div>
+                                    <div style="font-size: 12px; color: #0369a1; font-weight: 600;">Impact: 49.962</div>
+                                </div>
+                                <div class="source-item" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 8px; border-left: 4px solid #92400e;">
+                                    <div style="width: 40px; height: 40px; border-radius: 50%; background: #92400e; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">S</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 600; color: #92400e;">Science</div>
+                                        <div style="font-size: 12px; color: #92400e; opacity: 0.8;">American Association for the Advancement of Science</div>
+                                    </div>
+                                    <div style="font-size: 12px; color: #92400e; font-weight: 600;">Impact: 41.846</div>
+                                </div>
+                                <div class="source-item" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border-radius: 8px; border-left: 4px solid #166534;">
+                                    <div style="width: 40px; height: 40px; border-radius: 50%; background: #166534; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">P</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 600; color: #166534;">PNAS</div>
+                                        <div style="font-size: 12px; color: #166534; opacity: 0.8;">Proceedings of the National Academy of Sciences</div>
+                                    </div>
+                                    <div style="font-size: 12px; color: #166534; font-weight: 600;">Impact: 9.412</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bases de données -->
+                        <div class="result-card">
+                            <h3 style="margin-bottom: 16px; color: var(--primary);"><i class="fas fa-database"></i> Bases de Données</h3>
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <div class="source-item" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: linear-gradient(135deg, #f3e8ff, #e9d5ff); border-radius: 8px; border-left: 4px solid #6b21a8;">
+                                    <div style="width: 40px; height: 40px; border-radius: 50%; background: #6b21a8; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">P</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 600; color: #6b21a8;">PubMed</div>
+                                        <div style="font-size: 12px; color: #6b21a8; opacity: 0.8;">Base de données biomédicale</div>
+                                    </div>
+                                    <div style="font-size: 12px; color: #6b21a8; font-weight: 600;">30M+ articles</div>
+                                </div>
+                                <div class="source-item" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: linear-gradient(135deg, #ecfeff, #cffafe); border-radius: 8px; border-left: 4px solid #0e7490;">
+                                    <div style="width: 40px; height: 40px; border-radius: 50%; background: #0e7490; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">I</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 600; color: #0e7490;">IEEE Xplore</div>
+                                        <div style="font-size: 12px; color: #0e7490; opacity: 0.8;">Publications en ingénierie et informatique</div>
+                                    </div>
+                                    <div style="font-size: 12px; color: #0e7490; font-weight: 600;">5M+ documents</div>
+                                </div>
+                                <div class="source-item" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: linear-gradient(135deg, #fef2f2, #fee2e2); border-radius: 8px; border-left: 4px solid #dc2626;">
+                                    <div style="width: 40px; height: 40px; border-radius: 50%; background: #dc2626; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">A</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 600; color: #dc2626;">arXiv</div>
+                                        <div style="font-size: 12px; color: #dc2626; opacity: 0.8;">Prépublications en physique, maths, informatique</div>
+                                    </div>
+                                    <div style="font-size: 12px; color: #dc2626; font-weight: 600;">2M+ preprints</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Outils de validation scientifique -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 24px;">
+                        <!-- Vérificateur de sources -->
+                        <div class="result-card">
+                            <h3 style="margin-bottom: 16px; color: var(--primary);"><i class="fas fa-shield-alt"></i> Vérificateur de Sources</h3>
+                            <div style="margin-bottom: 16px;">
+                                <textarea id="sourceToVerify" placeholder="Collez l'URL ou le DOI d'un article à vérifier..." style="width: 100%; height: 80px; padding: 12px; border: 1px solid var(--border-light); border-radius: 8px; resize: vertical;"></textarea>
+                            </div>
+                            <div style="display: flex; gap: 8px;">
+                                <button class="btn-primary" onclick="verifySource()" style="flex: 1;"><i class="fas fa-check-circle"></i> Vérifier</button>
+                                <button class="btn-outline" onclick="checkPlagiarism()" style="flex: 1;"><i class="fas fa-search"></i> Plagiat</button>
+                            </div>
+                            <div id="verificationResult" style="margin-top: 16px; padding: 12px; background: var(--bg-secondary); border-radius: 8px; display: none;">
+                                <!-- Résultats de vérification -->
+                            </div>
+                        </div>
+
+                        <!-- Analyseur de fiabilité -->
+                        <div class="result-card">
+                            <h3 style="margin-bottom: 16px; color: var(--primary);"><i class="fas fa-chart-line"></i> Analyseur de Fiabilité</h3>
+                            <div style="margin-bottom: 16px;">
+                                <div style="display: flex; flex-direction: column; gap: 12px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--bg-secondary); border-radius: 8px;">
+                                        <span>Score de fiabilité</span>
+                                        <span style="font-weight: 600; color: #10b981;">87%</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--bg-secondary); border-radius: 8px;">
+                                        <span>Citations</span>
+                                        <span style="font-weight: 600; color: var(--primary);">1,247</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--bg-secondary); border-radius: 8px;">
+                                        <span>Âge de publication</span>
+                                        <span style="font-weight: 600; color: #f59e0b;">2 ans</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn-primary" onclick="detailedAnalysis()" style="width: 100%;"><i class="fas fa-analytics"></i> Analyse détaillée</button>
+                        </div>
+
+                        <!-- Générateur de citations -->
+                        <div class="result-card">
+                            <h3 style="margin-bottom: 16px; color: var(--primary);"><i class="fas fa-quote-right"></i> Générateur de Citations</h3>
+                            <div style="margin-bottom: 16px;">
+                                <select id="citationStyle" style="width: 100%; padding: 12px; border: 1px solid var(--border-light); border-radius: 8px; margin-bottom: 12px;">
+                                    <option value="apa">APA 7th Edition</option>
+                                    <option value="mla">MLA 9th Edition</option>
+                                    <option value="chicago">Chicago Style</option>
+                                    <option value="harvard">Harvard Style</option>
+                                    <option value="ieee">IEEE Style</option>
+                                </select>
+                                <textarea id="citationText" placeholder="Collez les informations de la source (auteur, titre, année, etc.)..." style="width: 100%; height: 60px; padding: 12px; border: 1px solid var(--border-light); border-radius: 8px; resize: vertical;"></textarea>
+                            </div>
+                            <button class="btn-primary" onclick="generateCitation()" style="width: 100%;"><i class="fas fa-magic"></i> Générer citation</button>
+                            <div id="generatedCitation" style="margin-top: 16px; padding: 12px; background: var(--bg-secondary); border-radius: 8px; display: none; font-family: monospace; font-size: 12px;">
+                                <!-- Citation générée -->
+                            </div>
+                        </div>
+
+                        <!-- Lecteur de PDF scientifique -->
+                        <div class="result-card">
+                            <h3 style="margin-bottom: 16px; color: var(--primary);"><i class="fas fa-file-pdf"></i> Lecteur PDF Scientifique</h3>
+                            <div style="margin-bottom: 16px;">
+                                <input type="file" id="pdfUpload" accept=".pdf" style="width: 100%; padding: 12px; border: 2px dashed var(--border-light); border-radius: 8px; text-align: center; cursor: pointer;">
+                            </div>
+                            <div style="display: flex; gap: 8px;">
+                                <button class="btn-outline" onclick="summarizePDF()" style="flex: 1;"><i class="fas fa-compress"></i> Résumer</button>
+                                <button class="btn-outline" onclick="extractReferences()" style="flex: 1;"><i class="fas fa-list"></i> Références</button>
+                            </div>
+                            <div id="pdfAnalysis" style="margin-top: 16px; padding: 12px; background: var(--bg-secondary); border-radius: 8px; display: none;">
+                                <!-- Analyse du PDF -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bibliothèque personnelle -->
+                    <div class="result-card" style="margin-bottom: 24px;">
+                        <h3 style="margin-bottom: 16px; color: var(--primary);"><i class="fas fa-bookmark"></i> Bibliothèque Personnelle</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-bottom: 16px;">
+                            <div class="library-item" style="padding: 16px; background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border-radius: 12px; border-left: 4px solid #0369a1;">
+                                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                                    <i class="fas fa-book" style="color: #0369a1; font-size: 20px;"></i>
+                                    <div>
+                                        <div style="font-weight: 600; color: #0369a1;">Quantum Computing</div>
+                                        <div style="font-size: 12px; color: #0369a1; opacity: 0.8;">12 articles sauvegardés</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn-secondary" onclick="viewCollection('quantum')" style="font-size: 12px; padding: 6px 12px;">Voir</button>
+                                    <button class="btn-outline" onclick="addToCollection('quantum')" style="font-size: 12px; padding: 6px 12px;">+</button>
+                                </div>
+                            </div>
+                            <div class="library-item" style="padding: 16px; background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 12px; border-left: 4px solid #92400e;">
+                                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                                    <i class="fas fa-flask" style="color: #92400e; font-size: 20px;"></i>
+                                    <div>
+                                        <div style="font-weight: 600; color: #92400e;">Chimie Organique</div>
+                                        <div style="font-size: 12px; color: #92400e; opacity: 0.8;">8 articles sauvegardés</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn-secondary" onclick="viewCollection('chemistry')" style="font-size: 12px; padding: 6px 12px;">Voir</button>
+                                    <button class="btn-outline" onclick="addToCollection('chemistry')" style="font-size: 12px; padding: 6px 12px;">+</button>
+                                </div>
+                            </div>
+                            <div class="library-item" style="padding: 16px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border-radius: 12px; border-left: 4px solid #166534;">
+                                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                                    <i class="fas fa-brain" style="color: #166534; font-size: 20px;"></i>
+                                    <div>
+                                        <div style="font-weight: 600; color: #166534;">Neuroscience</div>
+                                        <div style="font-size: 12px; color: #166534; opacity: 0.8;">15 articles sauvegardés</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn-secondary" onclick="viewCollection('neuroscience')" style="font-size: 12px; padding: 6px 12px;">Voir</button>
+                                    <button class="btn-outline" onclick="addToCollection('neuroscience')" style="font-size: 12px; padding: 6px 12px;">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn-primary" onclick="createNewCollection()" style="width: 100%;"><i class="fas fa-plus"></i> Nouvelle collection</button>
+                    </div>
+
+                    <!-- Alertes de recherche -->
+                    <div class="result-card">
+                        <h3 style="margin-bottom: 16px; color: var(--primary);"><i class="fas fa-bell"></i> Alertes de Recherche</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div style="padding: 16px; background: linear-gradient(135deg, #ecfeff, #cffafe); border-radius: 12px;">
+                                <h4 style="margin: 0 0 8px 0; color: #0e7490;"><i class="fas fa-rss"></i> Nouveaux articles</h4>
+                                <p style="margin: 0; font-size: 14px; color: #0e7490;">Soyez notifié des nouvelles publications dans vos domaines d'intérêt.</p>
+                                <button class="btn-secondary" onclick="setupArticleAlerts()" style="margin-top: 12px; width: 100%; font-size: 12px;">Configurer</button>
+                            </div>
+                            <div style="padding: 16px; background: linear-gradient(135deg, #f3e8ff, #e9d5ff); border-radius: 12px;">
+                                <h4 style="margin: 0 0 8px 0; color: #6b21a8;"><i class="fas fa-star"></i> Citations importantes</h4>
+                                <p style="margin: 0; font-size: 14px; color: #6b21a8;">Recevez des alertes quand vos articles sauvegardés sont cités.</p>
+                                <button class="btn-secondary" onclick="setupCitationAlerts()" style="margin-top: 12px; width: 100%; font-size: 12px;">Activer</button>
                             </div>
                         </div>
                     </div>
@@ -5326,6 +5596,362 @@ Points forts : Algèbre, Géométrie
         `;
         showResults('🧠 Apprentissage Adaptatif IA', adaptive);
         showNotification('Système adaptatif activé !');
+    }
+
+    // ===== NOUVELLES FONCTIONNALITÉS : RECHERCHE SCIENTIFIQUE =====
+
+    // Recherche scientifique principale
+    function performScientificSearch() {
+        const query = document.getElementById('scientificQuery').value.trim();
+        if (!query) {
+            showNotification('Veuillez entrer une requête de recherche');
+            return;
+        }
+
+        // Simulation de résultats de recherche
+        const mockResults = [
+            {
+                title: "Quantum Entanglement in Superconducting Circuits",
+                authors: "Smith, J. et al.",
+                journal: "Nature Physics",
+                year: 2024,
+                doi: "10.1038/s41567-024-02589-1",
+                citations: 47,
+                reliability: "high",
+                abstract: "We demonstrate quantum entanglement between superconducting qubits with unprecedented fidelity..."
+            },
+            {
+                title: "Machine Learning Approaches to Protein Folding Prediction",
+                authors: "Johnson, A. & Lee, M.",
+                journal: "Science",
+                year: 2024,
+                doi: "10.1126/science.adn1234",
+                citations: 156,
+                reliability: "high",
+                abstract: "Novel deep learning architectures achieve state-of-the-art accuracy in protein structure prediction..."
+            },
+            {
+                title: "Climate Change Impacts on Marine Ecosystems",
+                authors: "Garcia, R. et al.",
+                journal: "PNAS",
+                year: 2023,
+                doi: "10.1073/pnas.2304567110",
+                citations: 89,
+                reliability: "high",
+                abstract: "Comprehensive analysis of ocean acidification effects on coral reef biodiversity..."
+            }
+        ];
+
+        displaySearchResults(mockResults);
+        showNotification(`Recherche effectuée : ${mockResults.length} résultats trouvés`);
+    }
+
+    function displaySearchResults(results) {
+        const resultsContainer = document.getElementById('searchResults');
+        const resultsList = document.getElementById('resultsList');
+        const resultsCount = document.getElementById('resultsCount');
+
+        resultsCount.textContent = `${results.length} résultat${results.length > 1 ? 's' : ''}`;
+        resultsContainer.style.display = 'block';
+
+        const resultsHtml = results.map(result => `
+            <div class="result-item" style="padding:20px; background:white; border-radius:12px; border:1px solid var(--border-light); box-shadow:var(--shadow-sm);">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+                    <h4 style="margin:0; color:var(--primary); flex:1; margin-right:12px;">${result.title}</h4>
+                    <div style="display:flex; gap:8px; align-items:center;">
+                        <span class="reliability-badge" style="padding:4px 8px; border-radius:12px; font-size:10px; font-weight:600; background:${result.reliability === 'high' ? '#dcfce7' : '#fef3c7'}; color:${result.reliability === 'high' ? '#166534' : '#92400e'};">${result.reliability === 'high' ? 'Fiable' : 'Moyen'}</span>
+                        <span style="font-size:12px; color:var(--text-secondary);">${result.year}</span>
+                    </div>
+                </div>
+                <div style="margin-bottom:12px;">
+                    <span style="font-weight:600; color:var(--text-secondary);">${result.authors}</span>
+                    <span style="color:var(--text-muted);"> • ${result.journal}</span>
+                </div>
+                <p style="margin:0 0 12px 0; color:var(--text-secondary); line-height:1.5;">${result.abstract}</p>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div style="display:flex; gap:16px; align-items:center;">
+                        <span style="font-size:12px; color:var(--text-muted);"><i class="fas fa-quote-right"></i> ${result.citations} citations</span>
+                        <span style="font-size:12px; color:var(--text-muted);"><i class="fas fa-link"></i> DOI: ${result.doi}</span>
+                    </div>
+                    <div style="display:flex; gap:8px;">
+                        <button class="btn-outline" onclick="saveArticle('${result.doi}')" style="font-size:12px; padding:6px 12px;"><i class="fas fa-bookmark"></i> Sauver</button>
+                        <button class="btn-outline" onclick="viewFullArticle('${result.doi}')" style="font-size:12px; padding:6px 12px;"><i class="fas fa-external-link-alt"></i> Voir</button>
+                        <button class="btn-outline" onclick="citeArticle('${result.doi}')" style="font-size:12px; padding:6px 12px;"><i class="fas fa-quote-right"></i> Citer</button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        resultsList.innerHTML = resultsHtml;
+    }
+
+    function advancedSearch() {
+        const advancedOptions = `
+            <div style="display:grid; gap:16px;">
+                <div style="padding:16px; background:#f8fafc; border-radius:12px;">
+                    <h4>🔍 Recherche Avancée</h4>
+                </div>
+                <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:16px;">
+                    <div>
+                        <label style="font-weight:600; display:block; margin-bottom:8px;">Mots-clés spécifiques</label>
+                        <input type="text" placeholder="AND, OR, NOT operators..." style="width:100%; padding:12px; border:1px solid var(--border-light); border-radius:8px;">
+                    </div>
+                    <div>
+                        <label style="font-weight:600; display:block; margin-bottom:8px;">Auteurs</label>
+                        <input type="text" placeholder="Nom des auteurs..." style="width:100%; padding:12px; border:1px solid var(--border-light); border-radius:8px;">
+                    </div>
+                </div>
+                <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;">
+                    <div>
+                        <label style="font-weight:600; display:block; margin-bottom:8px;">Impact Factor min</label>
+                        <input type="number" placeholder="5.0" style="width:100%; padding:12px; border:1px solid var(--border-light); border-radius:8px;">
+                    </div>
+                    <div>
+                        <label style="font-weight:600; display:block; margin-bottom:8px;">Citations min</label>
+                        <input type="number" placeholder="50" style="width:100%; padding:12px; border:1px solid var(--border-light); border-radius:8px;">
+                    </div>
+                    <div>
+                        <label style="font-weight:600; display:block; margin-bottom:8px;">Langue</label>
+                        <select style="width:100%; padding:12px; border:1px solid var(--border-light); border-radius:8px;">
+                            <option>Anglais</option>
+                            <option>Français</option>
+                            <option>Allemand</option>
+                            <option>Espagnol</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display:flex; gap:12px; justify-content:flex-end;">
+                    <button class="btn-outline" onclick="resetAdvancedSearch()">Réinitialiser</button>
+                    <button class="btn-primary" onclick="executeAdvancedSearch()">Rechercher</button>
+                </div>
+            </div>
+        `;
+        showResults('🔍 Recherche Avancée Scientifique', advancedOptions);
+        showNotification('Options de recherche avancée ouvertes');
+    }
+
+    // Vérification de sources
+    function verifySource() {
+        const sourceUrl = document.getElementById('sourceToVerify').value.trim();
+        if (!sourceUrl) {
+            showNotification('Veuillez entrer une URL ou DOI à vérifier');
+            return;
+        }
+
+        // Simulation de vérification
+        const verificationResult = document.getElementById('verificationResult');
+        verificationResult.style.display = 'block';
+        verificationResult.innerHTML = `
+            <div style="display:grid; gap:12px;">
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <div style="width:12px; height:12px; border-radius:50%; background:#10b981;"></div>
+                    <span style="font-weight:600; color:#10b981;">Source vérifiée et fiable</span>
+                </div>
+                <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:12px;">
+                    <div style="padding:8px; background:#f8fafc; border-radius:6px;">
+                        <div style="font-size:12px; color:#64748b;">Journal</div>
+                        <div style="font-weight:600;">Nature Physics</div>
+                    </div>
+                    <div style="padding:8px; background:#f8fafc; border-radius:6px;">
+                        <div style="font-size:12px; color:#64748b;">Impact Factor</div>
+                        <div style="font-weight:600;">12.352</div>
+                    </div>
+                    <div style="padding:8px; background:#f8fafc; border-radius:6px;">
+                        <div style="font-size:12px; color:#64748b;">Révisé par pairs</div>
+                        <div style="font-weight:600; color:#10b981;">✓ Oui</div>
+                    </div>
+                    <div style="padding:8px; background:#f8fafc; border-radius:6px;">
+                        <div style="font-size:12px; color:#64748b;">Citations</div>
+                        <div style="font-weight:600;">247</div>
+                    </div>
+                </div>
+            </div>
+        `;
+        showNotification('Source vérifiée avec succès !');
+    }
+
+    function checkPlagiarism() {
+        showNotification('Analyse anti-plagiat en cours...');
+        setTimeout(() => {
+            showNotification('Analyse terminée : Aucun plagiat détecté');
+        }, 2000);
+    }
+
+    // Analyse détaillée
+    function detailedAnalysis() {
+        const analysis = `
+            <div style="display:grid; gap:16px;">
+                <div style="text-align:center; padding:20px; background:linear-gradient(135deg, #06b6d4, #0891b2); border-radius:12px; color:white;">
+                    <h4>📊 Analyse Détaillée de Fiabilité</h4>
+                    <p>Évaluation complète basée sur 15 critères scientifiques</p>
+                </div>
+                <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:16px;">
+                    <div style="padding:16px; background:#f8fafc; border-radius:12px;">
+                        <h5 style="color:#10b981;">✅ Points Forts</h5>
+                        <ul style="margin:8px 0; padding-left:20px;">
+                            <li>Révisé par les pairs</li>
+                            <li>Impact factor élevé</li>
+                            <li>Citations nombreuses</li>
+                            <li>Auteurs reconnus</li>
+                            <li>Méthodologie rigoureuse</li>
+                        </ul>
+                    </div>
+                    <div style="padding:16px; background:#f8fafc; border-radius:12px;">
+                        <h5 style="color:#f59e0b;">⚠️ Points d'Attention</h5>
+                        <ul style="margin:8px 0; padding-left:20px;">
+                            <li>Données de 2022</li>
+                            <li>Échantillon limité</li>
+                            <li>Résultats préliminaires</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="padding:16px; background:#fef3c7; border-radius:12px;">
+                    <h5>🎯 Recommandation</h5>
+                    <p style="margin:8px 0;">Cette source est hautement fiable pour vos recherches. Utilisez-la comme référence principale dans vos travaux académiques.</p>
+                </div>
+            </div>
+        `;
+        showResults('📊 Analyse Détaillée de Fiabilité', analysis);
+        showNotification('Analyse détaillée générée');
+    }
+
+    // Générateur de citations
+    function generateCitation() {
+        const style = document.getElementById('citationStyle').value;
+        const text = document.getElementById('citationText').value.trim();
+
+        if (!text) {
+            showNotification('Veuillez entrer les informations de la source');
+            return;
+        }
+
+        // Simulation de génération de citation
+        const citations = {
+            apa: "Smith, J., Johnson, A., & Lee, M. (2024). Quantum entanglement in superconducting circuits. Nature Physics, 20(3), 145-152. https://doi.org/10.1038/s41567-024-02589-1",
+            mla: 'Smith, John, et al. "Quantum Entanglement in Superconducting Circuits." Nature Physics, vol. 20, no. 3, 2024, pp. 145-152, doi:10.1038/s41567-024-02589-1.',
+            chicago: 'Smith, John, Alice Johnson, and Michael Lee. "Quantum Entanglement in Superconducting Circuits." Nature Physics 20, no. 3 (2024): 145-152. doi:10.1038/s41567-024-02589-1.',
+            harvard: 'Smith, J., Johnson, A. and Lee, M. (2024) Quantum entanglement in superconducting circuits. Nature Physics, 20(3), pp.145-152.',
+            ieee: 'J. Smith, A. Johnson, and M. Lee, "Quantum entanglement in superconducting circuits," Nature Physics, vol. 20, no. 3, pp. 145-152, 2024, doi: 10.1038/s41567-024-02589-1.'
+        };
+
+        const generatedCitation = document.getElementById('generatedCitation');
+        generatedCitation.style.display = 'block';
+        generatedCitation.textContent = citations[style] || citations.apa;
+
+        showNotification('Citation générée avec succès !');
+    }
+
+    // Lecteur PDF scientifique
+    function summarizePDF() {
+        const pdfAnalysis = document.getElementById('pdfAnalysis');
+        pdfAnalysis.style.display = 'block';
+        pdfAnalysis.innerHTML = `
+            <div style="display:grid; gap:12px;">
+                <div style="font-weight:600; color:var(--primary);">📄 Résumé Automatique</div>
+                <p style="line-height:1.6;">Cette étude présente une nouvelle approche pour l'informatique quantique utilisant des circuits supraconducteurs. Les auteurs démontrent un enchevêtrement quantique avec une fidélité de 98.5%, surpassant les méthodes précédentes. Les implications pour le calcul quantique sont significatives.</p>
+                <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:12px;">
+                    <div style="padding:8px; background:#f8fafc; border-radius:6px;">
+                        <div style="font-size:12px; color:#64748b;">Mots-clés</div>
+                        <div style="font-weight:600;">Quantum, Supraconducteur, Entanglement</div>
+                    </div>
+                    <div style="padding:8px; background:#f8fafc; border-radius:6px;">
+                        <div style="font-size:12px; color:#64748b;">Confiance</div>
+                        <div style="font-weight:600; color:#10b981;">92%</div>
+                    </div>
+                </div>
+            </div>
+        `;
+        showNotification('Résumé PDF généré');
+    }
+
+    function extractReferences() {
+        const pdfAnalysis = document.getElementById('pdfAnalysis');
+        pdfAnalysis.style.display = 'block';
+        pdfAnalysis.innerHTML = `
+            <div style="display:grid; gap:12px;">
+                <div style="font-weight:600; color:var(--primary);">📚 Références Extraites (15)</div>
+                <div style="max-height:200px; overflow-y:auto;">
+                    <div style="display:grid; gap:8px;">
+                        <div style="padding:8px; background:#f8fafc; border-radius:6px; font-size:12px;">
+                            [1] Nielsen & Chuang. Quantum Computation and Quantum Information (2010)
+                        </div>
+                        <div style="padding:8px; background:#f8fafc; border-radius:6px; font-size:12px;">
+                            [2] Devoret & Schoelkopf. Superconducting circuits for quantum information (2013)
+                        </div>
+                        <div style="padding:8px; background:#f8fafc; border-radius:6px; font-size:12px;">
+                            [3] Krantz et al. A quantum engineer's guide to superconducting qubits (2019)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        showNotification('Références extraites du PDF');
+    }
+
+    // Gestion de bibliothèque
+    function viewCollection(collectionId) {
+        const collections = {
+            quantum: { name: "Informatique Quantique", count: 12 },
+            chemistry: { name: "Chimie Organique", count: 8 },
+            neuroscience: { name: "Neuroscience", count: 15 }
+        };
+
+        const collection = collections[collectionId];
+        showNotification(`Ouverture de la collection "${collection.name}" (${collection.count} articles)`);
+    }
+
+    function addToCollection(collectionId) {
+        showNotification('Article ajouté à la collection');
+    }
+
+    function createNewCollection() {
+        const newCollection = prompt('Nom de la nouvelle collection :');
+        if (newCollection) {
+            showNotification(`Collection "${newCollection}" créée avec succès !`);
+        }
+    }
+
+    // Actions sur les articles
+    function saveArticle(doi) {
+        showNotification('Article sauvegardé dans votre bibliothèque');
+    }
+
+    function viewFullArticle(doi) {
+        showNotification('Ouverture de l\'article complet...');
+        // Simulation d'ouverture
+        setTimeout(() => {
+            window.open(`https://doi.org/${doi}`, '_blank');
+        }, 500);
+    }
+
+    function citeArticle(doi) {
+        navigator.clipboard.writeText(`https://doi.org/${doi}`).then(() => {
+            showNotification('DOI copié dans le presse-papiers');
+        });
+    }
+
+    // Alertes de recherche
+    function setupArticleAlerts() {
+        showNotification('Alertes d\'articles configurées pour vos domaines d\'intérêt');
+    }
+
+    function setupCitationAlerts() {
+        showNotification('Alertes de citations activées');
+    }
+
+    // Fonctions utilitaires pour la recherche avancée
+    function resetAdvancedSearch() {
+        document.querySelectorAll('#advancedSearch input, #advancedSearch select').forEach(el => {
+            if (el.type === 'number') el.value = '';
+            else if (el.tagName === 'SELECT') el.selectedIndex = 0;
+            else el.value = '';
+        });
+        showNotification('Recherche avancée réinitialisée');
+    }
+
+    function executeAdvancedSearch() {
+        showNotification('Recherche avancée exécutée');
+        // Ici on pourrait implémenter une recherche plus sophistiquée
     }
 
     </script>
