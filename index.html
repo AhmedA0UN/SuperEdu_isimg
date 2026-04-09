@@ -857,10 +857,84 @@
 
                 <!-- Module 2 : Échange -->
                 <div id="module-echange" class="module-tab-content">
-                    <div class="student-list">
-                        <div class="student-card"><div><h4>Sarah M. <span style="font-weight:normal;">(L2 Info)</span></h4><div class="skills"><span class="skill-tag">Python</span><span class="skill-tag">Java</span></div><p>Offre aide en algo – cherche aide BD</p></div><button class="btn-outline" onclick="showNotif('Contact envoyé')">Contacter</button></div>
-                        <div class="student-card"><div><h4>Yacine B. <span style="font-weight:normal;">(L3 Physique)</span></h4><div class="skills"><span class="skill-tag">Mécanique</span><span class="skill-tag">Électromag</span></div><p>Propose mentorat – cherche maths</p></div><button class="btn-outline" onclick="showNotif('Contact envoyé')">Contacter</button></div>
-                        <div class="student-card"><div><h4>Inès L. <span style="font-weight:normal;">(L1 Éco)</span></h4><div class="skills"><span class="skill-tag">Statistiques</span><span class="skill-tag">Excel</span></div><p>Cherche binôme pour tests d'hypothèses</p></div><button class="btn-outline" onclick="showNotif('Contact envoyé')">Contacter</button></div>
+                    <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-bottom:18px;">
+                        <div style="flex:1; min-width:220px;">
+                            <p class="form-instruction" style="margin:0;">Filtre les profils selon ton besoin : domaines, type d'échange, et disponibilité.</p>
+                        </div>
+                        <select id="exchangeDomain" style="padding:10px 16px; border-radius:30px; border:1px solid var(--border-light); min-width:180px;">
+                            <option>Tous les domaines</option>
+                            <option>Informatique & IA</option>
+                            <option>Ingénierie</option>
+                            <option>Gestion & Finance</option>
+                            <option>Soft Skills</option>
+                        </select>
+                        <select id="exchangeType" style="padding:10px 16px; border-radius:30px; border:1px solid var(--border-light); min-width:180px;">
+                            <option>Tous types</option>
+                            <option>Binôme projet</option>
+                            <option>Tutorat</option>
+                            <option>Relecture CV</option>
+                            <option>Prépa entretien</option>
+                        </select>
+                        <button class="btn-secondary" onclick="showNotification('Filtres d\'échange appliqués !')" style="white-space:nowrap;">Appliquer</button>
+                    </div>
+
+                    <div class="student-list" style="display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                        <div class="student-card">
+                            <div>
+                                <h4>Sarah M. <span style="font-weight:normal;">(L2 Info)</span></h4>
+                                <div class="skills"><span class="skill-tag">Python</span><span class="skill-tag">Java</span></div>
+                                <p>Offre aide en algo – cherche aide en BD</p>
+                                <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;"><span class="skill-tag">Binôme projet</span><span class="skill-tag">Relecture CV</span></div>
+                            </div>
+                            <button class="btn-outline" onclick="showNotif('Contact envoyé à Sarah M.')">Contacter</button>
+                        </div>
+                        <div class="student-card">
+                            <div>
+                                <h4>Yacine B. <span style="font-weight:normal;">(L3 Physique)</span></h4>
+                                <div class="skills"><span class="skill-tag">Mécanique</span><span class="skill-tag">Électromag</span></div>
+                                <p>Propose mentorat – cherche maths et optimisation.</p>
+                                <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;"><span class="skill-tag">Tutoring</span><span class="skill-tag">Projet</span></div>
+                            </div>
+                            <button class="btn-outline" onclick="showNotif('Contact envoyé à Yacine B.')">Contacter</button>
+                        </div>
+                        <div class="student-card">
+                            <div>
+                                <h4>Inès L. <span style="font-weight:normal;">(L1 Éco)</span></h4>
+                                <div class="skills"><span class="skill-tag">Statistiques</span><span class="skill-tag">Excel</span></div>
+                                <p>Cherche binôme pour tests d'hypothèses et présentation de données.</p>
+                                <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;"><span class="skill-tag">Analyse</span><span class="skill-tag">Data Viz</span></div>
+                            </div>
+                            <button class="btn-outline" onclick="showNotif('Contact envoyé à Inès L.')">Contacter</button>
+                        </div>
+                        <div class="student-card">
+                            <div>
+                                <h4>Rania K. <span style="font-weight:normal;">(L3 Finance)</span></h4>
+                                <div class="skills"><span class="skill-tag">Excel</span><span class="skill-tag">Business Case</span></div>
+                                <p>Propose séance de cas pratiques – cherche aide sur modélisation.</p>
+                                <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;"><span class="skill-tag">Cas pratique</span><span class="skill-tag">Prépa entretien</span></div>
+                            </div>
+                            <button class="btn-outline" onclick="showNotif('Contact envoyé à Rania K.')">Contacter</button>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:24px; display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                        <div class="widget" style="padding:20px; border-radius:24px; background:#f8fafc; border:1px solid rgba(59,130,246,0.18);">
+                            <h4 style="margin-bottom:12px;">Options avancées</h4>
+                            <ul style="margin:0; padding-left:20px; color:var(--text-secondary);">
+                                <li style="margin-bottom:8px;">Proposer ton profil à des pairs complémentaires.</li>
+                                <li style="margin-bottom:8px;">Créer une session de révision en groupe.</li>
+                                <li style="margin-bottom:8px;">Lancer un challenge de 48h sur un mini-projet.</li>
+                                <li>Organiser une session mock interview avec feedback immédiat.</li>
+                            </ul>
+                        </div>
+                        <div class="widget" style="padding:20px; border-radius:24px; background:#ffffff; border:1px solid rgba(15,23,42,0.08);">
+                            <h4 style="margin-bottom:12px;">Nouveaux formats d’échange</h4>
+                            <div style="display:flex; flex-direction:column; gap:10px;">
+                                <button class="btn-primary" onclick="showNotification('Proposition d\'atelier envoyée !')">Atelier collaboratif</button>
+                                <button class="btn-secondary" onclick="showNotification('Proposition de duo de projet envoyée !')">Duo projet</button>
+                                <button class="btn-secondary" onclick="showNotification('Invitation à une session mock interview envoyée !')">Mock interview</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
