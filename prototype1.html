@@ -2,9 +2,9 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SuperEdu_isimg · Apprendre Vite</title>
-    <link rel="icon" type="image/x-icon" href="src/i3.png>
+    <link rel="icon" type="image/x-icon" href="src/i3.png">
     <!-- Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -27,6 +27,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            -webkit-backdrop-filter: blur(12px);
             backdrop-filter: blur(12px);
             background: rgba(15, 23, 42, 0.82);
             border-bottom: 1px solid rgba(56, 189, 248, 0.2);
@@ -91,6 +92,7 @@
             display: flex;
             align-items: center;
             border: 1px solid #334155;
+            -webkit-backdrop-filter: blur(4px);
             backdrop-filter: blur(4px);
         }
 
@@ -175,6 +177,7 @@
 
         .video-card {
             background: rgba(30, 41, 59, 0.6);
+            -webkit-backdrop-filter: blur(8px);
             backdrop-filter: blur(8px);
             border-radius: 28px;
             padding: 16px;
@@ -227,6 +230,7 @@
             bottom: 12px;
             left: 12px;
             background: #0f172acc;
+            -webkit-backdrop-filter: blur(4px);
             backdrop-filter: blur(4px);
             padding: 4px 12px;
             border-radius: 30px;
@@ -335,6 +339,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             background: rgba(15, 23, 42, 0.8);
             box-shadow: 0 10px 30px #00000080, 0 0 20px #38bdf840;
@@ -371,6 +376,7 @@
 
         .icon-btn {
             background: #1e293bcc;
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             border: 1px solid #475569;
             border-radius: 50px;
@@ -396,6 +402,7 @@
             left: 20px;
             right: 20px;
             background: #0f172aee;
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             border-radius: 32px;
             padding: 20px;
@@ -543,6 +550,15 @@
             color: #94a3b8;
             font-size: 12px;
         }
+
+        .feed-title i {
+            margin-right: 6px;
+        }
+
+        .ai-message span {
+            font-size: 14px;
+            color: #a5f3fc;
+        }
     </style>
 </head>
 <body>
@@ -576,7 +592,7 @@
     </div>
 
     <div class="feed-title">
-        <h3><i class="fas fa-video" style="margin-right: 6px;"></i> Vidéos courtes · SuperShorts</h3>
+        <h3><i class="fas fa-video"></i> Vidéos courtes · SuperShorts</h3>
         <i class="fas fa-sliders-h"></i>
     </div>
 
@@ -700,7 +716,7 @@
         </div>
         <div class="ai-message">
             <strong><i class="fas fa-graduation-cap"></i> Bonjour !</strong> Je suis ton tuteur IA. Que souhaites-tu réviser ?<br>
-            <span style="font-size: 14px; color: #a5f3fc;">💡 Ex: "Explique les pointeurs en C", "Aide mémoire macroéconomie", "Fiche révision gestion de projet".</span>
+            <span>💡 Ex: "Explique les pointeurs en C", "Aide mémoire macroéconomie", "Fiche révision gestion de projet".</span>
         </div>
         <div class="ai-actions">
             <div class="ai-btn" id="explainPointersBtn">
