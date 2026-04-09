@@ -1,9 +1,3 @@
-Voici ton résumé en format \*\*Markdown (.md)\*\*, clair et bien structuré :  
-
-
-
-```markdown
-
 \# SuperEdu\_isimg
 
 
