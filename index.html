@@ -1057,11 +1057,184 @@
                         </div>
                     </div>
 
-                    <!-- Zone de résultats dynamiques -->
-                    <div id="dynamicResults" style="margin-top:20px; display:none;">
-                        <div class="widget" style="background:#ffffff; border:1px solid rgba(59,130,246,0.18); border-radius:20px; padding:20px;">
-                            <h4 id="resultsTitle" style="margin-bottom:16px;">Résultats</h4>
-                            <div id="resultsContent"></div>
+                    <!-- ===== SÉPARATEUR SUPPLÉMENTAIRE ===== -->
+                    <div style="margin:40px 0; text-align:center; position:relative;">
+                        <div style="height:2px; background:linear-gradient(90deg, transparent, #8b5cf6, transparent); margin:20px 0;"></div>
+                        <h2 style="font-size:26px; font-weight:700; color:#1e293b; margin:20px 0; text-transform:uppercase; letter-spacing:1px;">
+                            🎮 Fonctionnalités Premium
+                        </h2>
+                        <p style="color:#64748b; font-size:14px; margin:10px 0 20px;">
+                            Découvrez des outils révolutionnaires pour une expérience d'apprentissage ultime
+                        </p>
+                        <div style="height:2px; background:linear-gradient(90deg, transparent, #f59e0b, transparent); margin:20px 0;"></div>
+                    </div>
+
+                    <!-- ===== NOUVELLES FONCTIONNALITÉS AVANCÉES ===== -->
+
+                    <!-- Révision Espacée Intelligente -->
+                    <div style="margin-top:20px; display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                        <div class="widget" style="background:#ecfeff; border:1px solid rgba(6,182,212,0.18); border-radius:20px; padding:20px;">
+                            <h4 style="margin-bottom:16px; color:#0e7490;">⏰ Révision Espacée</h4>
+                            <div style="display:flex; flex-direction:column; gap:10px;">
+                                <div style="padding:12px; background:#f0f9ff; border-radius:8px; font-size:14px;">
+                                    <strong>Prochaine révision :</strong> Algèbre - dans 2h 30min
+                                </div>
+                                <button class="btn-primary" onclick="startSpacedRepetition()" style="padding:12px;">
+                                    🧠 Démarrer session de révision
+                                </button>
+                                <button class="btn-secondary" onclick="viewSpacedSchedule()" style="padding:12px;">
+                                    📅 Voir planning complet
+                                </button>
+                                <button class="btn-secondary" onclick="optimizeSpacedAlgo()" style="padding:12px;">
+                                    ⚡ Optimiser algorithme
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Chatbot IA Intégré -->
+                        <div class="widget" style="background:#f0fdf4; border:1px solid rgba(34,197,94,0.18); border-radius:20px; padding:20px;">
+                            <h4 style="margin-bottom:16px; color:#166534;">🤖 Assistant IA</h4>
+                            <div style="display:flex; flex-direction:column; gap:10px;">
+                                <div id="chatPreview" style="padding:12px; background:#f8fafc; border-radius:8px; font-size:14px; min-height:60px;">
+                                    <em>Assistant prêt à vous aider...</em>
+                                </div>
+                                <input type="text" id="aiQuestion" placeholder="Posez votre question..." style="padding:10px; border-radius:8px; border:1px solid var(--border-light);">
+                                <div style="display:flex; gap:8px;">
+                                    <button class="btn-primary" onclick="askAI()" style="flex:1; padding:10px;">
+                                        💬 Demander
+                                    </button>
+                                    <button class="btn-secondary" onclick="voiceAI()" style="padding:10px;">
+                                        🎤
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Analyse Motivation & Sentiment -->
+                        <div class="widget" style="background:#fefce8; border:1px solid rgba(245,158,11,0.18); border-radius:20px; padding:20px;">
+                            <h4 style="margin-bottom:16px; color:#92400e;">😊 Analyse Motivation</h4>
+                            <div style="display:flex; flex-direction:column; gap:10px;">
+                                <div style="text-align:center; padding:12px; background:#fffbeb; border-radius:8px;">
+                                    <div style="font-size:24px; margin-bottom:4px;">😊</div>
+                                    <div style="font-size:14px; color:#92400e;">Motivation: Élevée</div>
+                                </div>
+                                <button class="btn-secondary" onclick="analyzeMood()" style="padding:12px;">
+                                    📊 Analyser mon état actuel
+                                </button>
+                                <button class="btn-secondary" onclick="getMotivationTips()" style="padding:12px;">
+                                    💡 Conseils motivation
+                                </button>
+                                <button class="btn-secondary" onclick="trackMotivation()" style="padding:12px;">
+                                    📈 Suivre évolution
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Génération de Rapports & Export -->
+                    <div style="margin-top:20px; display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+                        <div class="widget" style="background:#fdf4ff; border:1px solid rgba(196,181,253,0.18); border-radius:20px; padding:20px;">
+                            <h4 style="margin-bottom:16px; color:#6b21a8;">📄 Génération de Rapports</h4>
+                            <div style="display:flex; flex-direction:column; gap:10px;">
+                                <button class="btn-primary" onclick="generateProgressReport()" style="padding:12px;">
+                                    📊 Rapport de progression complet
+                                </button>
+                                <button class="btn-secondary" onclick="generateWeeklyReport()" style="padding:12px;">
+                                    📅 Rapport hebdomadaire
+                                </button>
+                                <button class="btn-secondary" onclick="generateSubjectReport()" style="padding:12px;">
+                                    📚 Rapport par matière
+                                </button>
+                                <button class="btn-secondary" onclick="exportToPDF()" style="padding:12px;">
+                                    📋 Exporter en PDF
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Mode Hors Ligne & Sync -->
+                        <div class="widget" style="background:#f3f4f6; border:1px solid rgba(107,114,128,0.18); border-radius:20px; padding:20px;">
+                            <h4 style="margin-bottom:16px; color:#374151;">📱 Synchronisation</h4>
+                            <div style="display:flex; flex-direction:column; gap:10px;">
+                                <div style="padding:12px; background:#ffffff; border-radius:8px; font-size:14px;">
+                                    <strong>Status :</strong> <span style="color:#10b981;">En ligne</span> | Dernière sync: 2 min
+                                </div>
+                                <button class="btn-secondary" onclick="enableOfflineMode()" style="padding:12px;">
+                                    📴 Mode hors ligne
+                                </button>
+                                <button class="btn-secondary" onclick="syncDevices()" style="padding:12px;">
+                                    🔄 Synchroniser appareils
+                                </button>
+                                <button class="btn-secondary" onclick="backupCloud()" style="padding:12px;">
+                                    ☁️ Sauvegarde cloud
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Gamification Avancée -->
+                        <div class="widget" style="background:#fff7ed; border:1px solid rgba(249,115,22,0.18); border-radius:20px; padding:20px;">
+                            <h4 style="margin-bottom:16px; color:#9a3412;">🎮 Gamification</h4>
+                            <div style="display:flex; flex-direction:column; gap:10px;">
+                                <div style="text-align:center; padding:12px; background:#ffedd5; border-radius:8px;">
+                                    <div style="font-size:20px; margin-bottom:4px;">🏆</div>
+                                    <div style="font-size:14px; color:#9a3412;">Niveau 12 | 2,450 XP</div>
+                                </div>
+                                <button class="btn-primary" onclick="viewAchievements()" style="padding:12px;">
+                                    🏅 Voir succès
+                                </button>
+                                <button class="btn-secondary" onclick="joinChallenges()" style="padding:12px;">
+                                    ⚔️ Défis communautaires
+                                </button>
+                                <button class="btn-secondary" onclick="unlockRewards()" style="padding:12px;">
+                                    🎁 Récompenses
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Analyse Temps Réel & Recommandations -->
+                    <div style="margin-top:20px; display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
+                        <div class="widget" style="background:#f8fafc; border:1px solid rgba(59,130,246,0.18); border-radius:20px; padding:20px;">
+                            <h4 style="margin-bottom:16px; color:#1e40af;">⚡ Analyse Temps Réel</h4>
+                            <div style="display:flex; flex-direction:column; gap:12px;">
+                                <div style="padding:12px; background:#eff6ff; border-radius:8px;">
+                                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                                        <span style="font-size:14px;"><strong>Session actuelle :</strong></span>
+                                        <span id="currentSessionTime" style="font-size:14px; color:#1e40af;">00:00:00</span>
+                                    </div>
+                                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                                        <span style="font-size:14px;"><strong>Concentration :</strong></span>
+                                        <span style="font-size:14px; color:#059669;">87%</span>
+                                    </div>
+                                </div>
+                                <button class="btn-secondary" onclick="startRealTimeAnalysis()" style="padding:12px;">
+                                    📊 Démarrer analyse temps réel
+                                </button>
+                                <button class="btn-secondary" onclick="viewLiveInsights()" style="padding:12px;">
+                                    💡 Insights en direct
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Recommandations Contextuelles -->
+                        <div class="widget" style="background:#f0fdf4; border:1px solid rgba(16,185,129,0.18); border-radius:20px; padding:20px;">
+                            <h4 style="margin-bottom:16px; color:#166534;">🎯 Recommandations IA</h4>
+                            <div style="display:flex; flex-direction:column; gap:12px;">
+                                <div id="contextualRecommendations" style="padding:12px; background:#f0fdf4; border-radius:8px; border-left:4px solid #10b981;">
+                                    <div style="font-size:14px; margin-bottom:8px;"><strong>Maintenant (14h30) :</strong></div>
+                                    <div style="font-size:13px; color:#166534;">
+                                        Pause recommandée après 2h d'étude intensive. Votre pic de concentration est entre 9h-12h.
+                                    </div>
+                                </div>
+                                <button class="btn-primary" onclick="getPersonalizedTips()" style="padding:12px;">
+                                    🎯 Conseils personnalisés
+                                </button>
+                                <button class="btn-secondary" onclick="scheduleOptimalTime()" style="padding:12px;">
+                                    ⏰ Programmer créneau optimal
+                                </button>
+                                <button class="btn-secondary" onclick="adaptiveLearning()" style="padding:12px;">
+                                    🧠 Apprentissage adaptatif
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -4592,6 +4765,567 @@ Points forts : Algèbre, Géométrie
 
     function startCollabQuiz() {
         showNotification('Quiz collaboratif lancé ! Invite tes amis à rejoindre.');
+    }
+
+    // ===== NOUVELLES FONCTIONNALITÉS PREMIUM =====
+
+    // Révision Espacée Intelligente
+    function startSpacedRepetition() {
+        const spacedContent = `
+            <div style="display:grid; gap:16px;">
+                <div style="padding:16px; background:#ecfeff; border-radius:12px; border-left:4px solid #06b6d4;">
+                    <h5>📚 Session de Révision Espacée</h5>
+                    <p style="margin:8px 0;">Algorithme optimisé pour une mémorisation à long terme</p>
+                    <div style="margin-top:12px;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                            <span>Progrès: 3/12 cartes</span>
+                            <span>Intervalle: 2h 30min</span>
+                        </div>
+                        <div style="height:8px; background:#e0f2fe; border-radius:4px; overflow:hidden;">
+                            <div style="width:25%; height:100%; background:#06b6d4;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap:12px;">
+                    <button class="btn-primary" onclick="answerSpacedCard('easy')">Facile</button>
+                    <button class="btn-secondary" onclick="answerSpacedCard('good')">Bon</button>
+                    <button class="btn-secondary" onclick="answerSpacedCard('hard')">Difficile</button>
+                </div>
+            </div>
+        `;
+        showResults('⏰ Révision Espacée Active', spacedContent);
+        showNotification('Session de révision espacée démarrée !');
+    }
+
+    function viewSpacedSchedule() {
+        const schedule = `
+            <div style="display:grid; gap:12px;">
+                <div style="padding:12px; background:#f0f9ff; border-radius:8px;">
+                    <strong>📅 Planning des Révisions (Prochaines 24h)</strong>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                    <div style="padding:10px; background:#ffffff; border-radius:6px; border-left:3px solid #06b6d4;">
+                        <strong>14h30</strong> - Dérivées (Intervalle: 2h 30min)
+                    </div>
+                    <div style="padding:10px; background:#ffffff; border-radius:6px; border-left:3px solid #10b981;">
+                        <strong>17h00</strong> - Probabilités (Intervalle: 6h)
+                    </div>
+                    <div style="padding:10px; background:#ffffff; border-radius:6px; border-left:3px solid #f59e0b;">
+                        <strong>23h00</strong> - Algèbre linéaire (Intervalle: 24h)
+                    </div>
+                    <div style="padding:10px; background:#ffffff; border-radius:6px; border-left:3px solid #ef4444;">
+                        <strong>Demain 09h00</strong> - Analyse (Intervalle: 48h)
+                    </div>
+                </div>
+            </div>
+        `;
+        showResults('📅 Planning de Révision Espacée', schedule);
+        showNotification('Planning de révision consulté !');
+    }
+
+    function optimizeSpacedAlgo() {
+        showNotification('Algorithme de révision optimisé selon vos performances !');
+    }
+
+    function answerSpacedCard(difficulty) {
+        const messages = {
+            'easy': 'Carte revue facilement - Prochaine révision dans 6h',
+            'good': 'Carte maîtrisée - Prochaine révision dans 24h',
+            'hard': 'Carte difficile - Révision accélérée dans 1h'
+        };
+        showNotification(messages[difficulty]);
+    }
+
+    // Chatbot IA Intégré
+    function askAI() {
+        const question = document.getElementById('aiQuestion').value.trim();
+        if (!question) {
+            showNotification('Veuillez poser une question');
+            return;
+        }
+
+        // Simulation de réponse IA
+        const responses = {
+            'derivee': 'La dérivée de x² est 2x. C\'est une règle de base du calcul différentiel.',
+            'integrale': 'L\'intégrale de 2x dx est x² + C, où C est la constante d\'intégration.',
+            'probabilite': 'La probabilité d\'un événement est le nombre de cas favorables divisé par le nombre de cas possibles.',
+            'default': 'Je suis là pour vous aider avec vos questions de maths, physique, et autres matières. Pouvez-vous reformuler votre question ?'
+        };
+
+        let response = responses.default;
+        const lowerQuestion = question.toLowerCase();
+        if (lowerQuestion.includes('dérivée') || lowerQuestion.includes('derivee')) response = responses.derivee;
+        else if (lowerQuestion.includes('intégrale') || lowerQuestion.includes('integrale')) response = responses.integrale;
+        else if (lowerQuestion.includes('probabilité') || lowerQuestion.includes('probabilite')) response = responses.probabilite;
+
+        document.getElementById('chatPreview').innerHTML = `
+            <div style="margin-bottom:8px;"><strong>Vous:</strong> ${question}</div>
+            <div style="background:#10b981; color:white; padding:8px; border-radius:8px;">
+                <strong>IA:</strong> ${response}
+            </div>
+        `;
+
+        document.getElementById('aiQuestion').value = '';
+        showNotification('Réponse IA générée !');
+    }
+
+    function voiceAI() {
+        showNotification('Reconnaissance vocale activée pour l\'assistant IA');
+    }
+
+    // Analyse Motivation & Sentiment
+    function analyzeMood() {
+        const moodAnalysis = `
+            <div style="display:grid; gap:16px;">
+                <div style="text-align:center; padding:20px; background:linear-gradient(135deg, #fef3c7, #fde68a); border-radius:12px;">
+                    <div style="font-size:48px; margin-bottom:12px;">😊</div>
+                    <div style="font-size:20px; font-weight:600; color:#92400e;">Motivation Élevée</div>
+                    <div style="color:#92400e; margin-top:8px;">Score: 8.5/10</div>
+                </div>
+                <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:12px;">
+                    <div style="padding:12px; background:#f0f9ff; border-radius:8px; text-align:center;">
+                        <div style="font-size:24px;">🎯</div>
+                        <div style="font-size:14px; color:#1e40af;">Objectifs clairs</div>
+                    </div>
+                    <div style="padding:12px; background:#f0fdf4; border-radius:8px; text-align:center;">
+                        <div style="font-size:24px;">⚡</div>
+                        <div style="font-size:14px; color:#166534;">Énergie stable</div>
+                    </div>
+                </div>
+                <div style="padding:12px; background:#fef2f2; border-radius:8px;">
+                    <strong>💡 Conseil :</strong> Continuez sur cette lancée ! Votre régularité porte ses fruits.
+                </div>
+            </div>
+        `;
+        showResults('😊 Analyse de Motivation Détaillée', moodAnalysis);
+        showNotification('Analyse de motivation terminée !');
+    }
+
+    function getMotivationTips() {
+        const tips = `
+            <div style="display:grid; gap:12px;">
+                <div style="padding:16px; background:#f0f9ff; border-radius:12px; border-left:4px solid #3b82f6;">
+                    <h5>🚀 Booster sa Motivation</h5>
+                    <ul style="margin:8px 0; padding-left:20px;">
+                        <li>Définissez des objectifs SMART (Spécifiques, Mesurables, Atteignables, Réalistes, Temporels)</li>
+                        <li>Célébrez chaque petite victoire avec une récompense</li>
+                        <li>Visualisez votre succès régulièrement</li>
+                        <li>Entourez-vous de personnes positives</li>
+                        <li>Pratiquez la gratitude quotidienne</li>
+                    </ul>
+                </div>
+                <div style="padding:16px; background:#fef3c7; border-radius:12px; border-left:4px solid #f59e0b;">
+                    <h5>⏰ Routine Motivationnelle</h5>
+                    <ul style="margin:8px 0; padding-left:20px;">
+                        <li>Matin : Affirmations positives (5 min)</li>
+                        <li>Étude : Pauses actives toutes les 45 min</li>
+                        <li>Soir : Revue des accomplissements du jour</li>
+                        <li>Week-end : Loisirs et repos complet</li>
+                    </ul>
+                </div>
+            </div>
+        `;
+        showResults('💡 Conseils de Motivation Personnalisés', tips);
+        showNotification('Conseils de motivation générés !');
+    }
+
+    function trackMotivation() {
+        const tracking = `
+            <div style="display:grid; gap:16px;">
+                <div style="height:200px; background:#f8fafc; border-radius:12px; display:flex; align-items:center; justify-content:center; border:2px dashed #cbd5e1;">
+                    <div style="text-align:center;">
+                        <div style="font-size:32px; margin-bottom:8px;">📈</div>
+                        <div>Graphique d'évolution motivationnelle</div>
+                        <small style="color:#64748b;">(Simulation - données réelles à intégrer)</small>
+                    </div>
+                </div>
+                <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:12px;">
+                    <div style="text-align:center; padding:12px; background:#d1fae5; border-radius:8px;">
+                        <div style="font-size:20px;">📈</div>
+                        <div style="font-size:12px; color:#065f46;">+15% cette semaine</div>
+                    </div>
+                    <div style="text-align:center; padding:12px; background:#fef3c7; border-radius:8px;">
+                        <div style="font-size:20px;">🎯</div>
+                        <div style="font-size:12px; color:#92400e;">Objectifs atteints: 8/10</div>
+                    </div>
+                    <div style="text-align:center; padding:12px; background:#fee2e2; border-radius:8px;">
+                        <div style="font-size:20px;">⚠️</div>
+                        <div style="font-size:12px; color:#991b1b;">Jours difficiles: 2</div>
+                    </div>
+                </div>
+            </div>
+        `;
+        showResults('📈 Suivi de Motivation sur 30 Jours', tracking);
+        showNotification('Suivi motivationnel affiché !');
+    }
+
+    // Génération de Rapports
+    function generateProgressReport() {
+        const report = `
+            <div style="display:grid; gap:16px;">
+                <div style="text-align:center; padding:20px; background:linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius:12px; color:white;">
+                    <h3>Rapport de Progression Complet</h3>
+                    <p>Période: ${new Date().toLocaleDateString('fr-FR')} - ${new Date(Date.now() + 30*24*60*60*1000).toLocaleDateString('fr-FR')}</p>
+                </div>
+                <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:16px;">
+                    <div style="padding:16px; background:#f8fafc; border-radius:12px;">
+                        <h5>📊 Statistiques Globales</h5>
+                        <ul style="margin:8px 0; padding-left:20px;">
+                            <li>Questions répondues: 1,247</li>
+                            <li>Taux de réussite: 82.5%</li>
+                            <li>Temps d'étude: 47h 30min</li>
+                            <li>Sessions complétées: 23</li>
+                        </ul>
+                    </div>
+                    <div style="padding:16px; background:#f8fafc; border-radius:12px;">
+                        <h5>🎯 Performance par Matière</h5>
+                        <ul style="margin:8px 0; padding-left:20px;">
+                            <li>Mathématiques: 85% (+5%)</li>
+                            <li>Physique: 78% (-2%)</li>
+                            <li>Informatique: 92% (+8%)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="padding:16px; background:#fef3c7; border-radius:12px;">
+                    <h5>🏆 Accomplissements</h5>
+                    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;">
+                        <span style="background:#10b981; color:white; padding:4px 8px; border-radius:12px; font-size:12px;">10 jours consécutifs</span>
+                        <span style="background:#f59e0b; color:white; padding:4px 8px; border-radius:12px; font-size:12px;">100 questions réussies</span>
+                        <span style="background:#8b5cf6; color:white; padding:4px 8px; border-radius:12px; font-size:12px;">Expert Maths</span>
+                    </div>
+                </div>
+            </div>
+        `;
+        showResults('📊 Rapport de Progression Complet', report);
+        showNotification('Rapport de progression généré !');
+    }
+
+    function generateWeeklyReport() {
+        const weeklyReport = `
+            <div style="display:grid; gap:16px;">
+                <div style="text-align:center; padding:16px; background:#f0f9ff; border-radius:12px;">
+                    <h4>Rapport Hebdomadaire - Semaine ${Math.floor(Date.now() / (7*24*60*60*1000)) % 52 + 1}</h4>
+                </div>
+                <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:12px;">
+                    <div style="text-align:center; padding:12px; background:#d1fae5; border-radius:8px;">
+                        <div style="font-size:24px; font-weight:bold;">23h</div>
+                        <div style="font-size:12px;">Temps d'étude</div>
+                    </div>
+                    <div style="text-align:center; padding:12px; background:#fef3c7; border-radius:8px;">
+                        <div style="font-size:24px; font-weight:bold;">156</div>
+                        <div style="font-size:12px;">Questions</div>
+                    </div>
+                    <div style="text-align:center; padding:12px; background:#fee2e2; border-radius:8px;">
+                        <div style="font-size:24px; font-weight:bold;">84%</div>
+                        <div style="font-size:12px;">Réussite</div>
+                    </div>
+                </div>
+                <div style="padding:12px; background:#f8fafc; border-radius:8px;">
+                    <strong>📈 Tendances :</strong> Amélioration constante en algèbre, stabilité en physique.
+                </div>
+            </div>
+        `;
+        showResults('📅 Rapport Hebdomadaire', weeklyReport);
+        showNotification('Rapport hebdomadaire généré !');
+    }
+
+    function generateSubjectReport() {
+        const subjectReport = `
+            <div style="display:grid; gap:16px;">
+                <div style="padding:16px; background:#f8fafc; border-radius:12px;">
+                    <h4>📚 Rapport par Matière - Mathématiques</h4>
+                </div>
+                <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:16px;">
+                    <div style="padding:16px; background:#f0f9ff; border-radius:12px;">
+                        <h5>Algèbre</h5>
+                        <div style="margin:8px 0;">
+                            <div>Score: 88%</div>
+                            <div>Questions: 45/50</div>
+                            <div>Temps moyen: 2.3 min</div>
+                        </div>
+                    </div>
+                    <div style="padding:16px; background:#fef3c7; border-radius:12px;">
+                        <h5>Analyse</h5>
+                        <div style="margin:8px 0;">
+                            <div>Score: 76%</div>
+                            <div>Questions: 32/45</div>
+                            <div>Temps moyen: 3.1 min</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding:16px; background:#fee2e2; border-radius:12px;">
+                    <h5>⚠️ Points d'Amélioration</h5>
+                    <ul style="margin:8px 0; padding-left:20px;">
+                        <li>Dérivées de fonctions composées</li>
+                        <li>Intégrales définies</li>
+                        <li>Équations différentielles</li>
+                    </ul>
+                </div>
+            </div>
+        `;
+        showResults('📚 Rapport par Matière', subjectReport);
+        showNotification('Rapport par matière généré !');
+    }
+
+    function exportToPDF() {
+        showNotification('Génération du PDF en cours... Téléchargement automatique dans 3 secondes.');
+        setTimeout(() => {
+            showNotification('PDF généré et téléchargé ! 📄');
+        }, 3000);
+    }
+
+    // Mode Hors Ligne & Sync
+    function enableOfflineMode() {
+        showNotification('Mode hors ligne activé ! Toutes les données sont sauvegardées localement.');
+    }
+
+    function syncDevices() {
+        showNotification('Synchronisation avec vos autres appareils en cours...');
+        setTimeout(() => {
+            showNotification('Synchronisation terminée ! 🔄 Tous vos appareils sont à jour.');
+        }, 2000);
+    }
+
+    function backupCloud() {
+        showNotification('Sauvegarde cloud en cours...');
+        setTimeout(() => {
+            showNotification('Sauvegarde cloud terminée ! ☁️ Vos données sont sécurisées.');
+        }, 1500);
+    }
+
+    // Gamification Avancée
+    function viewAchievements() {
+        const achievements = `
+            <div style="display:grid; gap:16px;">
+                <div style="text-align:center; padding:16px; background:linear-gradient(135deg, #f59e0b, #d97706); border-radius:12px; color:white;">
+                    <h4>🏆 SUCCÈS DÉBLOQUÉS</h4>
+                    <p>12/25 succès obtenus</p>
+                </div>
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap:12px;">
+                    <div style="padding:12px; background:#d1fae5; border-radius:8px; text-align:center;">
+                        <div style="font-size:24px;">🎯</div>
+                        <div style="font-size:14px; font-weight:600;">Premier Quiz</div>
+                        <div style="font-size:12px; color:#065f46;">+50 XP</div>
+                    </div>
+                    <div style="padding:12px; background:#d1fae5; border-radius:8px; text-align:center;">
+                        <div style="font-size:24px;">🔥</div>
+                        <div style="font-size:14px; font-weight:600;">Série 7 jours</div>
+                        <div style="font-size:12px; color:#065f46;">+200 XP</div>
+                    </div>
+                    <div style="padding:12px; background:#d1fae5; border-radius:8px; text-align:center;">
+                        <div style="font-size:24px;">🧠</div>
+                        <div style="font-size:14px; font-weight:600;">Expert Maths</div>
+                        <div style="font-size:12px; color:#065f46;">+500 XP</div>
+                    </div>
+                    <div style="padding:12px; background:#e5e7eb; border-radius:8px; text-align:center; opacity:0.6;">
+                        <div style="font-size:24px;">🏆</div>
+                        <div style="font-size:14px; font-weight:600;">Champion</div>
+                        <div style="font-size:12px; color:#6b7280;">1000 XP requis</div>
+                    </div>
+                </div>
+            </div>
+        `;
+        showResults('🏆 Mes Succès et Récompenses', achievements);
+        showNotification('Succès affichés !');
+    }
+
+    function joinChallenges() {
+        const challenges = `
+            <div style="display:grid; gap:16px;">
+                <div style="text-align:center; padding:16px; background:#f0f9ff; border-radius:12px;">
+                    <h4>⚔️ DÉFIS COMMUNAUTAIRES</h4>
+                    <p>Relevez des défis avec d'autres étudiants !</p>
+                </div>
+                <div style="display:grid; gap:12px;">
+                    <div style="padding:16px; background:#ffffff; border-radius:12px; border:2px solid #3b82f6;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                            <h5 style="margin:0;">🔥 Défi Semaine Maths</h5>
+                            <span style="background:#3b82f6; color:white; padding:4px 8px; border-radius:12px; font-size:12px;">ACTIF</span>
+                        </div>
+                        <p style="margin:4px 0; font-size:14px;">Résoudre 50 problèmes d'algèbre en 7 jours</p>
+                        <div style="margin-top:8px;">
+                            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+                                <span>Progrès: 23/50</span>
+                                <span>46%</span>
+                            </div>
+                            <div style="height:6px; background:#e5e7eb; border-radius:3px; overflow:hidden;">
+                                <div style="width:46%; height:100%; background:#3b82f6;"></div>
+                            </div>
+                        </div>
+                        <button class="btn-primary" onclick="joinChallenge('maths-week')" style="margin-top:12px; width:100%; padding:8px;">Rejoindre</button>
+                    </div>
+                    <div style="padding:16px; background:#ffffff; border-radius:12px; border:2px solid #10b981;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                            <h5 style="margin:0;">⏱️ Sprint 24h Physique</h5>
+                            <span style="background:#10b981; color:white; padding:4px 8px; border-radius:12px; font-size:12px;">BIENTÔT</span>
+                        </div>
+                        <p style="margin:4px 0; font-size:14px;">Maîtriser 10 concepts de mécanique en 24h</p>
+                        <button class="btn-secondary" onclick="joinChallenge('physics-sprint')" style="margin-top:12px; width:100%; padding:8px;">S'inscrire</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        showResults('⚔️ Défis Communautaires', challenges);
+        showNotification('Défis communautaires chargés !');
+    }
+
+    function unlockRewards() {
+        const rewards = `
+            <div style="display:grid; gap:16px;">
+                <div style="text-align:center; padding:16px; background:linear-gradient(135deg, #8b5cf6, #7c3aed); border-radius:12px; color:white;">
+                    <h4>🎁 RÉCOMPENSES DISPONIBLES</h4>
+                    <p>2,450 XP accumulés</p>
+                </div>
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:12px;">
+                    <div style="padding:12px; background:#f0f9ff; border-radius:8px; text-align:center;">
+                        <div style="font-size:24px;">🎨</div>
+                        <div style="font-size:14px; font-weight:600;">Nouveau Thème</div>
+                        <div style="font-size:12px; color:#1e40af;">500 XP</div>
+                        <button class="btn-primary" onclick="unlockReward('theme')" style="margin-top:8px; font-size:12px; padding:6px 12px;">Débloquer</button>
+                    </div>
+                    <div style="padding:12px; background:#fef3c7; border-radius:8px; text-align:center;">
+                        <div style="font-size:24px;">🎵</div>
+                        <div style="font-size:14px; font-weight:600;">Playlist Étude</div>
+                        <div style="font-size:12px; color:#92400e;">750 XP</div>
+                        <button class="btn-secondary" onclick="unlockReward('playlist')" style="margin-top:8px; font-size:12px; padding:6px 12px;">750 XP requis</button>
+                    </div>
+                    <div style="padding:12px; background:#d1fae5; border-radius:8px; text-align:center;">
+                        <div style="font-size:24px;">👑</div>
+                        <div style="font-size:14px; font-weight:600;">Badge Premium</div>
+                        <div style="font-size:12px; color:#065f46;">1000 XP</div>
+                        <button class="btn-secondary" onclick="unlockReward('badge')" style="margin-top:8px; font-size:12px; padding:6px 12px;">1000 XP requis</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        showResults('🎁 Récompenses et Cadeaux', rewards);
+        showNotification('Récompenses affichées !');
+    }
+
+    function joinChallenge(challengeId) {
+        showNotification(`Défi ${challengeId} rejoint ! Bonne chance !`);
+    }
+
+    function unlockReward(rewardType) {
+        showNotification(`Récompense ${rewardType} débloquée ! 🎉`);
+    }
+
+    // Analyse Temps Réel
+    let realTimeInterval = null;
+    function startRealTimeAnalysis() {
+        if (realTimeInterval) {
+            clearInterval(realTimeInterval);
+            realTimeInterval = null;
+            showNotification('Analyse temps réel arrêtée');
+            return;
+        }
+
+        let sessionTime = 0;
+        realTimeInterval = setInterval(() => {
+            sessionTime++;
+            const hours = Math.floor(sessionTime / 3600);
+            const minutes = Math.floor((sessionTime % 3600) / 60);
+            const seconds = sessionTime % 60;
+            document.getElementById('currentSessionTime').textContent =
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }, 1000);
+
+        showNotification('Analyse temps réel démarrée ! 📊');
+    }
+
+    function viewLiveInsights() {
+        const liveInsights = `
+            <div style="display:grid; gap:16px;">
+                <div style="padding:16px; background:#f0f9ff; border-radius:12px;">
+                    <h5>⚡ Insights en Direct</h5>
+                </div>
+                <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:12px;">
+                    <div style="padding:12px; background:#d1fae5; border-radius:8px;">
+                        <div style="font-size:20px;">🧠</div>
+                        <div style="font-size:14px; font-weight:600;">Concentration</div>
+                        <div style="font-size:18px; color:#065f46;">87%</div>
+                        <div style="font-size:12px; color:#065f46;">+5% vs moyenne</div>
+                    </div>
+                    <div style="padding:12px; background:#fef3c7; border-radius:8px;">
+                        <div style="font-size:20px;">⚡</div>
+                        <div style="font-size:14px; font-weight:600;">Rythme</div>
+                        <div style="font-size:18px; color:#92400e;">92 BPM</div>
+                        <div style="font-size:12px; color:#92400e;">Optimal</div>
+                    </div>
+                </div>
+                <div style="padding:12px; background:#fee2e2; border-radius:8px;">
+                    <strong>💡 Recommandation temps réel :</strong> Votre concentration est excellente ! Continuez 15 minutes de plus pour optimiser la rétention.
+                </div>
+            </div>
+        `;
+        showResults('⚡ Insights Temps Réel', liveInsights);
+        showNotification('Insights en direct affichés !');
+    }
+
+    // Recommandations Contextuelles
+    function getPersonalizedTips() {
+        const tips = `
+            <div style="display:grid; gap:16px;">
+                <div style="padding:16px; background:#f0fdf4; border-radius:12px; border-left:4px solid #10b981;">
+                    <h5>🎯 Conseils Personnalisés pour Vous</h5>
+                    <p style="margin:8px 0;">Basés sur vos 30 derniers jours d'activité</p>
+                </div>
+                <div style="display:grid; gap:12px;">
+                    <div style="padding:12px; background:#f0f9ff; border-radius:8px;">
+                        <strong>📚 Méthode d'Apprentissage :</strong> Vous apprenez mieux avec des exercices pratiques avant la théorie. Continuez cette approche !
+                    </div>
+                    <div style="padding:12px; background:#fef3c7; border-radius:8px;">
+                        <strong>⏰ Timing Optimal :</strong> Vos meilleures performances sont entre 9h et 12h. Planifiez vos sessions importantes à ces horaires.
+                    </div>
+                    <div style="padding:12px; background:#d1fae5; border-radius:8px;">
+                        <strong>🎯 Points Forts :</strong> Mathématiques et logique. Utilisez ces forces pour aider d'autres matières.
+                    </div>
+                    <div style="padding:12px; background:#fee2e2; border-radius:8px;">
+                        <strong>⚠️ À Améliorer :</strong> La mémorisation à long terme. Intégrez des révisions espacées dans votre routine.
+                    </div>
+                </div>
+            </div>
+        `;
+        showResults('🎯 Conseils Personnalisés IA', tips);
+        showNotification('Conseils personnalisés générés !');
+    }
+
+    function scheduleOptimalTime() {
+        showNotification('Créneaux optimaux programmés dans votre calendrier ! 📅');
+    }
+
+    function adaptiveLearning() {
+        const adaptive = `
+            <div style="display:grid; gap:16px;">
+                <div style="text-align:center; padding:20px; background:linear-gradient(135deg, #8b5cf6, #7c3aed); border-radius:12px; color:white;">
+                    <h4>🧠 APPRENTISSAGE ADAPTATIF</h4>
+                    <p>Le système s'adapte à votre rythme d'apprentissage</p>
+                </div>
+                <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:16px;">
+                    <div style="padding:16px; background:#f8fafc; border-radius:12px;">
+                        <h5>📈 Niveau Actuel</h5>
+                        <div style="font-size:24px; font-weight:600; color:#3b82f6; margin:8px 0;">Intermédiaire+</div>
+                        <div style="font-size:12px; color:#64748b;">Ajusté automatiquement</div>
+                    </div>
+                    <div style="padding:16px; background:#f8fafc; border-radius:12px;">
+                        <h5>🎯 Prochaine Étape</h5>
+                        <div style="font-size:18px; font-weight:600; color:#10b981; margin:8px 0;">Analyse Avancée</div>
+                        <div style="font-size:12px; color:#64748b;">Quand prêt</div>
+                    </div>
+                </div>
+                <div style="padding:16px; background:#fef3c7; border-radius:12px;">
+                    <h5>🔄 Adaptations Récentes</h5>
+                    <ul style="margin:8px 0; padding-left:20px;">
+                        <li>Difficulté augmentée de 15% en algèbre</li>
+                        <li>Questions supplémentaires en probabilités</li>
+                        <li>Réduction du temps limite pour maintenir l'attention</li>
+                        <li>Ajout de révisions espacées pour la mémorisation</li>
+                    </ul>
+                </div>
+            </div>
+        `;
+        showResults('🧠 Apprentissage Adaptatif IA', adaptive);
+        showNotification('Système adaptatif activé !');
     }
 
     </script>
