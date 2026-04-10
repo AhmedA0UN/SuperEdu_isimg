@@ -186,6 +186,7 @@
             <div class="nav-section-title"><i class="fas fa-heart"></i><span>Famille</span></div>
             <button class="nav-item" data-page="parent-space"><i class="fas fa-chalkboard-user"></i><span>Espace Parent</span></button>
             <button class="nav-item" data-page="teacher-space"><i class="fas fa-chalkboard-teacher"></i><span>Espace Enseignant</span></button>
+            <button class="nav-item" data-page="eleve-secondaire"><i class="fas fa-school"></i><span>Élèves Secondaire</span></button>
             <button class="nav-item" data-page="psychologue"><i class="fas fa-hand-holding-heart"></i><span>Bien-être</span></button>
         </div>
         <div class="user-profile-mini" id="sidebarUser"><div class="user-avatar">👤</div><div class="user-info"><h4>Invite</h4><p>Connectez-vous</p></div></div>
@@ -208,7 +209,7 @@
                 <div class="auth-form" id="registerForm">
                     <div class="input-group"><label>Nom complet</label><input type="text" id="regName" placeholder="Votre nom"></div>
                     <div class="input-group"><label>Email</label><input type="email" id="regEmail" placeholder="email@isimg.tn"></div>
-                    <div class="input-group"><label>Rôle</label><select id="regRole"><option value="etudiant">Étudiant</option><option value="parent">Parent / Tuteur</option><option value="enseignant">Enseignant</option></select></div>
+                    <div class="input-group"><label>Rôle</label><select id="regRole"><option value="etudiant">Étudiant</option><option value="parent">Parent / Tuteur</option><option value="enseignant">Enseignant</option><option value="eleve">Élève du secondaire</option></select></div>
                     <div class="input-group"><label>Mot de passe</label><input type="password" id="regPassword" placeholder="Min. 6 caractères"></div>
                     <button class="btn-block" id="doRegisterBtn"><i class="fas fa-user-plus"></i> Créer mon compte</button>
                 </div>
@@ -258,6 +259,141 @@
         <div class="page-container" id="page-leadership"><div class="category-header"><h1>Leadership & RH</h1></div><div class="widget"><p>Gestion d'équipe, communication managériale</p></div></div>
         <div class="page-container" id="page-entrepreneuriat"><div class="category-header"><h1>Entrepreneuriat</h1></div><div class="resource-grid"><div class="resource-card"><h3>Business Model Canvas</h3><button class="btn-block" onclick="showNotification('Lancement du module')">Démarrer</button></div></div></div>
         <div class="page-container" id="page-psychologue"><div class="category-header" style="background:linear-gradient(135deg,#4c1d95,#5b21b6);"><h1><i class="fas fa-hand-holding-heart"></i> Bien-être & Psychologie</h1></div><div class="widget"><div class="widget-title">Séances disponibles</div><button class="btn-block" onclick="showNotification('RDV avec psychologue')">Prendre rendez-vous</button></div></div>
+
+        <!-- ESPACE ÉLÈVES DU SECONDAIRE -->
+        <div class="page-container" id="page-eleve-secondaire">
+            <div class="content-header">
+                <div class="page-title"><h1><i class="fas fa-school"></i> Espace Élèves Secondaire</h1><p>Prépare ton avenir universitaire</p></div>
+                <button class="logout-btn" id="eleveLogoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
+            </div>
+
+            <!-- Statistiques rapides -->
+            <div class="quick-stats">
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-users"></i></div><div class="stat-value">156</div><div class="stat-label">Étudiants mentors</div></div>
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-question-circle"></i></div><div class="stat-value">89</div><div class="stat-label">Questions répondues</div></div>
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-graduation-cap"></i></div><div class="stat-value">24</div><div class="stat-label">Parcours partagés</div></div>
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-calendar-check"></i></div><div class="stat-value">12</div><div class="stat-label">RDV cette semaine</div></div>
+            </div>
+
+            <!-- Section Parcours Universitaires -->
+            <div class="widget">
+                <div class="widget-title"><i class="fas fa-route"></i> Découvre les Parcours Universitaires</div>
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <h3><i class="fas fa-code"></i> Informatique & IA</h3>
+                        <p>Développement, cybersécurité, data science... Les débouchés sont nombreux !</p>
+                        <div style="margin-top: 16px;">
+                            <button class="btn-secondary" onclick="showUniversityPath('informatique')" style="margin-right: 8px;"><i class="fas fa-eye"></i> Voir parcours</button>
+                            <button class="btn-secondary" onclick="contactMentor('informatique')"><i class="fas fa-user-graduate"></i> Contacter mentor</button>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <h3><i class="fas fa-chart-line"></i> Économie & Gestion</h3>
+                        <p>Finance, marketing, entrepreneuriat... Construis ton avenir professionnel.</p>
+                        <div style="margin-top: 16px;">
+                            <button class="btn-secondary" onclick="showUniversityPath('economie')" style="margin-right: 8px;"><i class="fas fa-eye"></i> Voir parcours</button>
+                            <button class="btn-secondary" onclick="contactMentor('economie')"><i class="fas fa-user-graduate"></i> Contacter mentor</button>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <h3><i class="fas fa-cogs"></i> Ingénierie</h3>
+                        <p>Mécanique, électrique, civile... L'innovation au service de la société.</p>
+                        <div style="margin-top: 16px;">
+                            <button class="btn-secondary" onclick="showUniversityPath('ingenierie')" style="margin-right: 8px;"><i class="fas fa-eye"></i> Voir parcours</button>
+                            <button class="btn-secondary" onclick="contactMentor('ingenierie')"><i class="fas fa-user-graduate"></i> Contacter mentor</button>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <h3><i class="fas fa-flask"></i> Sciences & Recherche</h3>
+                        <p>Biologie, chimie, physique... Explore les mystères de l'univers.</p>
+                        <div style="margin-top: 16px;">
+                            <button class="btn-secondary" onclick="showUniversityPath('sciences')" style="margin-right: 8px;"><i class="fas fa-eye"></i> Voir parcours</button>
+                            <button class="btn-secondary" onclick="contactMentor('sciences')"><i class="fas fa-user-graduate"></i> Contacter mentor</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Communication avec Étudiants/Enseignants -->
+            <div class="widget">
+                <div class="widget-title"><i class="fas fa-comments"></i> Échange avec la Communauté</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                    <!-- Chat avec étudiants -->
+                    <div style="background: var(--bg-secondary); padding: 20px; border-radius: 16px; border: 1px solid var(--border-light);">
+                        <h4 style="margin-bottom: 16px; display: flex; align-items: center; gap: 8px;"><i class="fas fa-user-graduate"></i> Chat avec Étudiants</h4>
+                        <div id="studentChatMessages" style="height: 200px; overflow-y: auto; background: white; border-radius: 12px; padding: 12px; margin-bottom: 12px; border: 1px solid var(--border-light);">
+                            <div style="color: var(--text-muted); font-style: italic;">Bienvenue dans le chat étudiants ! Pose tes questions sur la vie universitaire.</div>
+                        </div>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="text" id="studentChatInput" placeholder="Pose ta question..." style="flex: 1; padding: 10px; border-radius: 20px; border: 1px solid var(--border-light);">
+                            <button class="btn-secondary" onclick="sendStudentMessage()" style="padding: 10px 16px;"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Chat avec enseignants -->
+                    <div style="background: var(--bg-secondary); padding: 20px; border-radius: 16px; border: 1px solid var(--border-light);">
+                        <h4 style="margin-bottom: 16px; display: flex; align-items: center; gap: 8px;"><i class="fas fa-chalkboard-teacher"></i> Chat avec Enseignants</h4>
+                        <div id="teacherChatMessages" style="height: 200px; overflow-y: auto; background: white; border-radius: 12px; padding: 12px; margin-bottom: 12px; border: 1px solid var(--border-light);">
+                            <div style="color: var(--text-muted); font-style: italic;">Les enseignants sont là pour te guider dans tes choix d'orientation.</div>
+                        </div>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="text" id="teacherChatInput" placeholder="Demande conseil..." style="flex: 1; padding: 10px; border-radius: 20px; border: 1px solid var(--border-light);">
+                            <button class="btn-secondary" onclick="sendTeacherMessage()" style="padding: 10px 16px;"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Q&R -->
+            <div class="widget">
+                <div class="widget-title"><i class="fas fa-question-circle"></i> Questions & Réponses</div>
+                <div style="margin-bottom: 20px;">
+                    <input type="text" id="qnaSearch" placeholder="Recherche une question..." style="width: 100%; padding: 12px; border-radius: 24px; border: 1px solid var(--border-light); margin-bottom: 16px;">
+                    <button class="btn-secondary" onclick="searchQNA()" style="margin-right: 8px;"><i class="fas fa-search"></i> Rechercher</button>
+                    <button class="btn-primary" onclick="askNewQuestion()"><i class="fas fa-plus"></i> Poser une question</button>
+                </div>
+
+                <div id="qnaContainer">
+                    <div class="resource-card" style="margin-bottom: 16px;">
+                        <h4>Comment choisir entre informatique et ingénierie ?</h4>
+                        <p style="color: var(--text-secondary); margin: 8px 0;">Réponses: 12 | Par: Ahmed B. (2ème année Info)</p>
+                        <button class="btn-secondary" onclick="viewQNA(1)">Voir les réponses</button>
+                    </div>
+                    <div class="resource-card" style="margin-bottom: 16px;">
+                        <h4>Quelles sont les débouchés en économie ?</h4>
+                        <p style="color: var(--text-secondary); margin: 8px 0;">Réponses: 8 | Par: Dr. Leila M. (Enseignante)</p>
+                        <button class="btn-secondary" onclick="viewQNA(2)">Voir les réponses</button>
+                    </div>
+                    <div class="resource-card" style="margin-bottom: 16px;">
+                        <h4>Comment réussir le baccalauréat ?</h4>
+                        <p style="color: var(--text-secondary); margin: 8px 0;">Réponses: 15 | Par: Sarah K. (Terminale)</p>
+                        <button class="btn-secondary" onclick="viewQNA(3)">Voir les réponses</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Rendez-vous -->
+            <div class="widget">
+                <div class="widget-title"><i class="fas fa-calendar-alt"></i> Prendre Rendez-vous</div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
+                    <div class="resource-card">
+                        <h4><i class="fas fa-user-graduate"></i> Session d'orientation</h4>
+                        <p>Échange individuel avec un étudiant mentor pour découvrir un parcours.</p>
+                        <button class="btn-primary" onclick="bookAppointment('orientation')">Réserver</button>
+                    </div>
+                    <div class="resource-card">
+                        <h4><i class="fas fa-chalkboard-teacher"></i> Conseil enseignant</h4>
+                        <p>Discussion avec un professeur pour des conseils personnalisés.</p>
+                        <button class="btn-primary" onclick="bookAppointment('enseignant')">Réserver</button>
+                    </div>
+                    <div class="resource-card">
+                        <h4><i class="fas fa-users"></i> Atelier collectif</h4>
+                        <p>Participe à un atelier de groupe sur l'orientation universitaire.</p>
+                        <button class="btn-primary" onclick="bookAppointment('atelier')">S'inscrire</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -272,6 +408,7 @@
               { id: 102, name: "Omar Ben Ali", class: "1ère CPI", progress: 45, videosWatched: 28, hoursSpent: 64, certificates: 2, lastActive: "Hier", grades: { "Algorithmique": 68, "Microéconomie": 72 } }
           ] },
         { id: 2, name: "Étudiant Test", email: "etudiant@isimg.tn", password: "123456", role: "etudiant", children: [] },
+        { id: 4, name: "Ahmed Terminale", email: "eleve@isimg.tn", password: "eleve123", role: "eleve", children: [] },
         { id: 3, name: "Dr. Karim", email: "enseignant@isimg.tn", password: "enseignant123", role: "enseignant", 
           courses: [
               { id: 201, title: "Design Patterns Avancés", students: 45, avgGrade: 82, nextSession: "Demain 14h" },
@@ -377,6 +514,7 @@
         if(!currentUser) { showNotification("Veuillez vous connecter d'abord", true); return; }
         if(pageId === 'parent-space' && currentUser.role !== 'parent') { showNotification("Accès réservé aux parents", true); return; }
         if(pageId === 'teacher-space' && currentUser.role !== 'enseignant') { showNotification("Accès réservé aux enseignants", true); return; }
+        if(pageId === 'eleve-secondaire' && currentUser.role !== 'eleve') { showNotification("Accès réservé aux élèves du secondaire", true); return; }
         document.querySelectorAll('.page-container').forEach(p => p.classList.remove('active-page'));
         const targetPage = document.getElementById(`page-${pageId}`);
         if(targetPage) targetPage.classList.add('active-page');
@@ -447,6 +585,303 @@
     document.getElementById('parentLogoutBtn')?.addEventListener('click', logout);
     document.getElementById('studentLogoutBtn')?.addEventListener('click', logout);
     document.getElementById('teacherLogoutBtn')?.addEventListener('click', logout);
+    document.getElementById('eleveLogoutBtn')?.addEventListener('click', logout);
+    
+    // ==================== FONCTIONS ÉLÈVES SECONDAIRE ====================
+    
+    // Afficher les parcours universitaires
+    function showUniversityPath(domain) {
+        const paths = {
+            'informatique': {
+                title: 'Parcours Informatique & IA',
+                description: 'Un domaine en pleine expansion avec de nombreuses opportunités',
+                steps: [
+                    'Licence en Informatique (3 ans)',
+                    'Master en Développement/IA (2 ans)',
+                    'Doctorat (optionnel, 3 ans)',
+                    'Alternance/Stage dès la 2ème année'
+                ],
+                careers: ['Développeur Full-Stack', 'Data Scientist', 'Ingénieur IA', 'Consultant IT'],
+                salary: '35k-80k€ selon expérience'
+            },
+            'economie': {
+                title: 'Parcours Économie & Gestion',
+                description: 'Comprendre les mécanismes économiques et managériaux',
+                steps: [
+                    'Licence Économie/Gestion (3 ans)',
+                    'Master Finance/Marketing (2 ans)',
+                    'MBA/Executive (optionnel)',
+                    'Stages en entreprise recommandés'
+                ],
+                careers: ['Analyste financier', 'Chef de projet', 'Consultant', 'Entrepreneur'],
+                salary: '30k-70k€ selon poste'
+            },
+            'ingenierie': {
+                title: 'Parcours Ingénierie',
+                description: 'Concevoir et innover pour résoudre les défis techniques',
+                steps: [
+                    'Classe préparatoire (2 ans)',
+                    'École d\'ingénieurs (3 ans)',
+                    'Master spécialisé (optionnel)',
+                    'Projets techniques tout au long'
+                ],
+                careers: ['Ingénieur R&D', 'Chef de projet technique', 'Consultant', 'Manager'],
+                salary: '40k-90k€ selon spécialité'
+            },
+            'sciences': {
+                title: 'Parcours Sciences & Recherche',
+                description: 'Explorer les mystères de la nature et innover scientifiquement',
+                steps: [
+                    'Licence Sciences (3 ans)',
+                    'Master Recherche (2 ans)',
+                    'Doctorat (3 ans)',
+                    'Stages en labo dès la 2ème année'
+                ],
+                careers: ['Chercheur', 'Enseignant-chercheur', 'R&D', 'Consultant scientifique'],
+                salary: '30k-60k€ selon carrière'
+            }
+        };
+        
+        const path = paths[domain];
+        if (!path) return;
+        
+        const content = `
+            <div style="text-align: center; margin-bottom: 24px;">
+                <h2 style="color: var(--primary); margin-bottom: 8px;">${path.title}</h2>
+                <p style="color: var(--text-secondary);">${path.description}</p>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+                <div style="background: var(--bg-secondary); padding: 20px; border-radius: 16px;">
+                    <h4 style="margin-bottom: 12px;"><i class="fas fa-road"></i> Parcours académique</h4>
+                    <ul style="padding-left: 20px;">
+                        ${path.steps.map(step => `<li style="margin-bottom: 8px;">${step}</li>`).join('')}
+                    </ul>
+                </div>
+                <div style="background: var(--bg-secondary); padding: 20px; border-radius: 16px;">
+                    <h4 style="margin-bottom: 12px;"><i class="fas fa-briefcase"></i> Métiers possibles</h4>
+                    <ul style="padding-left: 20px;">
+                        ${path.careers.map(career => `<li style="margin-bottom: 8px;">${career}</li>`).join('')}
+                    </ul>
+                    <div style="margin-top: 16px; padding: 12px; background: var(--accent); color: white; border-radius: 8px;">
+                        <strong>Salaire moyen: ${path.salary}</strong>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <button class="btn-primary" onclick="contactMentor('${domain}')">Contacter un mentor dans ce domaine</button>
+            </div>
+        `;
+        
+        document.getElementById('modalTitle').textContent = path.title;
+        document.getElementById('modalMessage').innerHTML = content;
+        document.getElementById('modal').classList.add('active');
+    }
+    
+    // Contacter un mentor
+    function contactMentor(domain) {
+        const mentors = {
+            'informatique': ['Ahmed B. (2A Info)', 'Sarah K. (3A IA)', 'Mohamed L. (Dev Full-Stack)'],
+            'economie': ['Dr. Leila M. (Économie)', 'Karim T. (Finance)', 'Amira S. (Marketing)'],
+            'ingenierie': ['Prof. Sami R. (Mécanique)', 'Inès B. (Électronique)', 'Youssef M. (Civile)'],
+            'sciences': ['Dr. Nadia F. (Biologie)', 'Prof. Hassen K. (Chimie)', 'Dr. Sonia M. (Physique)']
+        };
+        
+        const domainMentors = mentors[domain] || ['Mentor disponible'];
+        const content = `
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h3>Mentors disponibles en ${domain.charAt(0).toUpperCase() + domain.slice(1)}</h3>
+                <p>Sélectionne un mentor pour prendre rendez-vous</p>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                ${domainMentors.map(mentor => `
+                    <button class="btn-secondary" onclick="bookAppointmentWithMentor('${mentor}')">
+                        <i class="fas fa-user-graduate"></i> ${mentor}
+                    </button>
+                `).join('')}
+            </div>
+        `;
+        
+        document.getElementById('modalTitle').textContent = 'Contacter un Mentor';
+        document.getElementById('modalMessage').innerHTML = content;
+        document.getElementById('modal').classList.add('active');
+    }
+    
+    // Gestion des chats
+    function sendStudentMessage() {
+        const input = document.getElementById('studentChatInput');
+        const message = input.value.trim();
+        if (!message) return;
+        
+        const chatDiv = document.getElementById('studentChatMessages');
+        const messageDiv = document.createElement('div');
+        messageDiv.style.cssText = 'background: var(--accent); color: white; padding: 8px 12px; border-radius: 16px; margin: 8px 0; margin-left: auto; max-width: 70%; word-wrap: break-word;';
+        messageDiv.textContent = message;
+        chatDiv.appendChild(messageDiv);
+        chatDiv.scrollTop = chatDiv.scrollHeight;
+        input.value = '';
+        
+        // Simulation de réponse
+        setTimeout(() => {
+            const responses = [
+                "Salut ! En informatique, commence par apprendre Python, c'est accessible et très demandé.",
+                "Pour l'orientation, regarde les salons virtuels organisés par les universités.",
+                "Les stages sont super importants ! Essaie d'en faire un pendant les vacances.",
+                "N'hésite pas à demander des conseils aux étudiants en 2ème année, ils connaissent bien les difficultés."
+            ];
+            const responseDiv = document.createElement('div');
+            responseDiv.style.cssText = 'background: var(--bg-secondary); padding: 8px 12px; border-radius: 16px; margin: 8px 0; max-width: 70%; word-wrap: break-word;';
+            responseDiv.innerHTML = `<strong>Étudiant Mentor:</strong> ${responses[Math.floor(Math.random() * responses.length)]}`;
+            chatDiv.appendChild(responseDiv);
+            chatDiv.scrollTop = chatDiv.scrollHeight;
+        }, 1000 + Math.random() * 2000);
+    }
+    
+    function sendTeacherMessage() {
+        const input = document.getElementById('teacherChatInput');
+        const message = input.value.trim();
+        if (!message) return;
+        
+        const chatDiv = document.getElementById('teacherChatMessages');
+        const messageDiv = document.createElement('div');
+        messageDiv.style.cssText = 'background: var(--accent); color: white; padding: 8px 12px; border-radius: 16px; margin: 8px 0; margin-left: auto; max-width: 70%; word-wrap: break-word;';
+        messageDiv.textContent = message;
+        chatDiv.appendChild(messageDiv);
+        chatDiv.scrollTop = chatDiv.scrollHeight;
+        input.value = '';
+        
+        // Simulation de réponse enseignant
+        setTimeout(() => {
+            const responses = [
+                "Pour réussir tes études, il faut développer une méthode de travail régulière.",
+                "Les matières scientifiques demandent beaucoup de pratique. Fais des exercices régulièrement.",
+                "Pour l'orientation, pense à tes centres d'intérêt et à tes points forts.",
+                "Les enseignants peuvent t'aider à choisir ton parcours. N'hésite pas à prendre rendez-vous."
+            ];
+            const responseDiv = document.createElement('div');
+            responseDiv.style.cssText = 'background: var(--bg-secondary); padding: 8px 12px; border-radius: 16px; margin: 8px 0; max-width: 70%; word-wrap: break-word;';
+            responseDiv.innerHTML = `<strong>Enseignant:</strong> ${responses[Math.floor(Math.random() * responses.length)]}`;
+            chatDiv.appendChild(responseDiv);
+            chatDiv.scrollTop = chatDiv.scrollHeight;
+        }, 1500 + Math.random() * 2000);
+    }
+    
+    // Gestion Q&R
+    function searchQNA() {
+        const query = document.getElementById('qnaSearch').value.trim();
+        if (!query) {
+            showNotification('Veuillez entrer un terme de recherche');
+            return;
+        }
+        showNotification(`Recherche: "${query}" - Fonctionnalité en développement`);
+    }
+    
+    function askNewQuestion() {
+        const question = prompt('Pose ta question sur l\'orientation universitaire:');
+        if (question && question.trim()) {
+            showNotification('Question envoyée ! Un mentor te répondra bientôt.');
+        }
+    }
+    
+    function viewQNA(id) {
+        const qnas = {
+            1: {
+                question: 'Comment choisir entre informatique et ingénierie ?',
+                answers: [
+                    {author: 'Ahmed B. (2A Info)', text: 'Ça dépend de tes préférences ! Info = plus de liberté créative, Ingénierie = plus de contraintes techniques mais salaire souvent plus élevé.'},
+                    {author: 'Prof. Sami R.', text: 'L\'informatique est plus généraliste, l\'ingénierie plus spécialisée. Teste les deux domaines avant de choisir.'},
+                    {author: 'Sarah K. (Terminale)', text: 'Si tu aimes coder pour le plaisir, va en info. Si tu préfères résoudre des problèmes concrets, ingénierie.'}
+                ]
+            },
+            2: {
+                question: 'Quelles sont les débouchés en économie ?',
+                answers: [
+                    {author: 'Dr. Leila M.', text: 'Finance, audit, consulting, marketing... Les économistes sont très demandés dans tous les secteurs.'},
+                    {author: 'Karim T. (Finance)', text: 'Avec un master, tu peux viser banque, assurance, ou même créer ta startup.'}
+                ]
+            },
+            3: {
+                question: 'Comment réussir le baccalauréat ?',
+                answers: [
+                    {author: 'Sarah K. (Terminale)', text: 'Méthode de travail régulière, révisions quotidiennes, et surtout bien dormir !'},
+                    {author: 'Prof. Nadia F.', text: 'Identifie tes points faibles et travaille-les en priorité. Les maths et la physique sont cruciales.'},
+                    {author: 'Ahmed B.', text: 'Fais des exercices tous les jours, même 30min. La régularité paye plus que le bachotage.'}
+                ]
+            }
+        };
+        
+        const qna = qnas[id];
+        if (!qna) return;
+        
+        let content = `<h3 style="margin-bottom: 20px;">${qna.question}</h3>`;
+        qna.answers.forEach(answer => {
+            content += `
+                <div style="background: var(--bg-secondary); padding: 16px; border-radius: 12px; margin-bottom: 12px; border-left: 4px solid var(--accent);">
+                    <div style="font-weight: 600; color: var(--accent); margin-bottom: 8px;">${answer.author}</div>
+                    <div>${answer.text}</div>
+                </div>
+            `;
+        });
+        
+        document.getElementById('modalTitle').textContent = 'Question & Réponses';
+        document.getElementById('modalMessage').innerHTML = content;
+        document.getElementById('modal').classList.add('active');
+    }
+    
+    // Prendre rendez-vous
+    function bookAppointment(type) {
+        const types = {
+            'orientation': 'Session d\'orientation individuelle',
+            'enseignant': 'Conseil avec un enseignant',
+            'atelier': 'Atelier collectif d\'orientation'
+        };
+        
+        const content = `
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h3>Réserver: ${types[type]}</h3>
+                <p>Choisis une date et heure disponibles</p>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+                <div>
+                    <label style="font-weight: 600;">Date:</label>
+                    <input type="date" id="appointmentDate" style="width: 100%; padding: 8px; border-radius: 8px; border: 1px solid var(--border-light); margin-top: 4px;">
+                </div>
+                <div>
+                    <label style="font-weight: 600;">Heure:</label>
+                    <select id="appointmentTime" style="width: 100%; padding: 8px; border-radius: 8px; border: 1px solid var(--border-light); margin-top: 4px;">
+                        <option>09:00</option><option>10:00</option><option>11:00</option><option>14:00</option><option>15:00</option><option>16:00</option>
+                    </select>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <button class="btn-primary" onclick="confirmAppointment('${type}')">Confirmer le rendez-vous</button>
+            </div>
+        `;
+        
+        document.getElementById('modalTitle').textContent = 'Prendre Rendez-vous';
+        document.getElementById('modalMessage').innerHTML = content;
+        document.getElementById('modal').classList.add('active');
+    }
+    
+    function bookAppointmentWithMentor(mentor) {
+        closeModal();
+        setTimeout(() => bookAppointment('orientation'), 300);
+        showNotification(`Rendez-vous demandé avec ${mentor}`);
+    }
+    
+    function confirmAppointment(type) {
+        const date = document.getElementById('appointmentDate').value;
+        const time = document.getElementById('appointmentTime').value;
+        
+        if (!date || !time) {
+            showNotification('Veuillez sélectionner une date et heure', true);
+            return;
+        }
+        
+        closeModal();
+        showNotification(`Rendez-vous confirmé pour le ${date} à ${time}h ! Un email de confirmation vous sera envoyé.`);
+    }
+    
+    // ==================== FIN FONCTIONS ÉLÈVES SECONDAIRE ====================
     
     // Initialisation: si aucun user, afficher auth
     if(!currentUser) {
@@ -455,6 +890,7 @@
     } else {
         if(currentUser.role === 'parent') switchToPage('parent-space');
         else if(currentUser.role === 'enseignant') switchToPage('teacher-space');
+        else if(currentUser.role === 'eleve') switchToPage('eleve-secondaire');
         else switchToPage('pour-toi');
     }
     
