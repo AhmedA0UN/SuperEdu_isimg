@@ -654,7 +654,7 @@
                         <div class="widget ai-widget"><div class="ai-header"><div class="ai-avatar"><i class="fas fa-robot"></i></div><div><h3 style="color:white;margin-bottom:6px;">SuperBot IA</h3><div class="ai-status"><span class="ai-status-dot"></span><span style="color:var(--accent-light);font-size:12px;">En ligne · Prêt à aider</span></div></div></div><div class="ai-message-box"><div class="ai-message"><i class="fas fa-graduation-cap" style="color:var(--accent);margin-right:8px;"></i>Bonjour Ahmed ! Je vois que tu progresses bien sur les Design Patterns. Veux-tu que je t'explique le Pattern Observer ?</div><div class="ai-suggestions"><span class="ai-suggestion-chip" onclick="showNotification('SuperBot explique le Pattern Observer...')"><i class="fas fa-question"></i> Explique Observer</span><span class="ai-suggestion-chip" onclick="showNotification('Génération de fiche de révision...')"><i class="fas fa-file"></i> Fiche Révision</span><span class="ai-suggestion-chip" onclick="showNotification('Analyse de code en cours...')"><i class="fas fa-code"></i> Debug Code</span><span class="ai-suggestion-chip" onclick="showNotification('Création de quiz personnalisé...')">
                                         <i class="fas fa-question-circle"></i> Quiz
                                     </span><span class="ai-suggestion-chip" onclick="showNotification('Ouverture du menu d\'autres options plus avancées ...')">
-                                        <i class="fas fa-ellipsis-h"></i> Avancé
+                                        <i class="fas fa-ellipsis-h"></i> Autre
                                     </span></div></div><div class="ai-input"><input type="text" placeholder="Pose ta question à SuperBot..." id="aiInput"><button onclick="startVoiceInput()"><i class="fas fa-microphone"></i></button><button onclick="sendAIMessage()"><i class="fas fa-paper-plane"></i></button></div></div>
                         <div class="widget"><div class="widget-title"><i class="fas fa-users"></i><span>Espaces Collaboration</span></div><div class="collab-list"><div class="collab-room"><div class="room-info"><div class="room-icon"><i class="fas fa-laptop-code"></i></div><div class="room-details"><h4>Projet Architecture Logicielle</h4><p>8 étudiants · Dr. Ben Ali</p></div></div><div class="online-indicator"><span class="online-dot"></span><span style="font-size:12px;color:var(--text-muted);">4</span></div><button class="join-btn" onclick="showNotification('Rejoindre la session...')">Rejoindre</button></div><div class="collab-room"><div class="room-info"><div class="room-icon"><i class="fas fa-chart-bar"></i></div><div class="room-details"><h4>Révision Macroéconomie</h4><p>12 étudiants · Pr. Mansour</p></div></div><div class="online-indicator"><span class="online-dot"></span><span style="font-size:12px;color:var(--text-muted);">7</span></div><button class="join-btn" onclick="showNotification('Rejoindre la session...')">Rejoindre</button></div></div><button class="btn-primary" style="width:100%;margin-top:16px;" onclick="showNotification('Création d\'un nouvel espace...')"><i class="fas fa-plus"></i> Créer un espace</button></div>
                         <div class="widget"><div class="widget-title"><i class="fas fa-hand-holding-heart"></i><span>Espace Bien-être & Psy</span></div><div class="psy-session"><div class="psy-avatar"><i class="fas fa-user-md"></i></div><div class="psy-details"><h4>Dr. Amel Driss</h4><p>Psychologue clinicienne</p><p style="margin-top:8px;"><i class="far fa-clock"></i> Prochain créneau : 16h</p></div></div><div class="psy-session" style="background:linear-gradient(135deg,#e0e7ff,#c7d2fe);border-color:#a5b4fc;"><div class="psy-avatar" style="background:linear-gradient(135deg,#6366f1,#818cf8);"><i class="fas fa-users"></i></div><div class="psy-details"><h4>Groupe de Parole</h4><p style="color:#3730a3;">Gestion du stress des examens</p><p style="margin-top:8px;"><i class="far fa-calendar"></i> Mercredi 18h · 6 participants</p></div></div><button class="book-session-btn" onclick="showNotification('Réservation d\'une séance...')"><i class="far fa-calendar-check"></i> Réserver une séance</button></div>
@@ -816,6 +816,57 @@
                         <div style="font-size:28px; font-weight:700; color:#a855f7;">4</div>
                         <div style="font-size:11px; color:#6b21a8; opacity:0.8; margin-top:4px;">Professeurs et experts</div>
                     </div>
+                </div>
+
+                <!-- Démarrage rapide -->
+                <div class="widget" style="margin-bottom:28px;">
+                    <div class="widget-title"><i class="fas fa-rocket"></i><span>Démarrage rapide</span></div>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px;">
+                        <div style="display:flex; flex-direction:column; gap:8px;">
+                            <label style="font-size:13px; font-weight:600; color:var(--text-secondary);">Titre du projet</label>
+                            <input type="text" id="pfaProjectTitle" placeholder="Ex: Plateforme IA de suivi" style="padding:12px 14px; border-radius:12px; border:1px solid var(--border-light); background:white;">
+                        </div>
+                        <div style="display:flex; flex-direction:column; gap:8px;">
+                            <label style="font-size:13px; font-weight:600; color:var(--text-secondary);">Type</label>
+                            <select id="pfaProjectType" style="padding:12px 14px; border-radius:12px; border:1px solid var(--border-light); background:white;">
+                                <option value="PFA">PFA</option>
+                                <option value="PFE">PFE</option>
+                            </select>
+                        </div>
+                        <div style="display:flex; flex-direction:column; gap:8px;">
+                            <label style="font-size:13px; font-weight:600; color:var(--text-secondary);">Domaine</label>
+                            <select id="pfaProjectDomain" style="padding:12px 14px; border-radius:12px; border:1px solid var(--border-light); background:white;">
+                                <option>Informatique</option>
+                                <option>Économie</option>
+                                <option>Ingénierie</option>
+                                <option>Sciences</option>
+                                <option>Pédagogie</option>
+                            </select>
+                        </div>
+                        <div style="display:flex; flex-direction:column; gap:8px;">
+                            <label style="font-size:13px; font-weight:600; color:var(--text-secondary);">Date limite</label>
+                            <input type="date" id="pfaProjectDeadline" style="padding:12px 14px; border-radius:12px; border:1px solid var(--border-light); background:white;">
+                        </div>
+                        <div style="display:flex; flex-direction:column; gap:8px;">
+                            <label style="font-size:13px; font-weight:600; color:var(--text-secondary);">Membres</label>
+                            <input type="number" id="pfaProjectMembers" min="1" value="4" style="padding:12px 14px; border-radius:12px; border:1px solid var(--border-light); background:white;">
+                        </div>
+                        <div style="display:flex; flex-direction:column; gap:8px; grid-column:1 / -1;">
+                            <label style="font-size:13px; font-weight:600; color:var(--text-secondary);">Objectif du projet</label>
+                            <textarea id="pfaProjectGoal" placeholder="Décris brièvement le problème à résoudre et le résultat attendu" style="min-height:88px; padding:12px 14px; border-radius:12px; border:1px solid var(--border-light); background:white; resize:vertical;"></textarea>
+                        </div>
+                    </div>
+                    <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:10px;">
+                        <button class="btn-primary" onclick="createPfaProject()"><i class="fas fa-plus"></i> Enregistrer le projet</button>
+                        <button class="btn-secondary" onclick="showPfaTemplates()"><i class="fas fa-file-contract"></i> Voir les templates</button>
+                        <button class="btn-secondary" onclick="showPfaRoadmap()"><i class="fas fa-calendar-check"></i> Plan de soutenance</button>
+                        <button class="btn-secondary" onclick="resetPfaProjectForm()"><i class="fas fa-rotate-left"></i> Réinitialiser</button>
+                    </div>
+                </div>
+
+                <div class="widget" style="margin-bottom:28px;">
+                    <div class="widget-title"><i class="fas fa-table-columns"></i><span>Suivi des projets enregistrés</span></div>
+                    <div id="pfaProjectsContainer"></div>
                 </div>
 
                 <!-- Mes Projets -->
@@ -3270,6 +3321,7 @@
                 document.getElementById(`page-${pageId}`)?.classList.add('active-page');
                 navItems.forEach(item => { item.classList.remove('active'); if(item.dataset.page === pageId) item.classList.add('active'); });
                 currentPage = pageId;
+                if (pageId === 'pfa-pfe') renderPfaProjects();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
             navItems.forEach(item => item.addEventListener('click', function(e) { e.preventDefault(); if(this.dataset.page) switchPage(this.dataset.page); }));
@@ -3288,6 +3340,171 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         function closeModal() { document.getElementById('modal').classList.remove('active'); }
+        const pfaStorageKey = 'superedu_pfa_projects';
+        const defaultPfaProjects = [
+            { title: 'Systeme IA Predictif', type: 'PFE', domain: 'Informatique', progress: 72, members: 4, deadline: '2025-05-15', goal: 'Prédire les tendances du marché avec du machine learning.', status: 'Analyse de données', mentor: 'Pr. Mohamed Ben Salem' },
+            { title: 'Application Mobile E-commerce', type: 'PFA', domain: 'Informatique', progress: 85, members: 3, deadline: '2025-04-30', goal: 'Créer une application de shopping avec paiement et notifications.', status: 'Intégration finale', mentor: 'Mme. Fatema Hamza' },
+            { title: 'Analyse Donnees Economiques', type: 'PFE', domain: 'Économie', progress: 45, members: 2, deadline: '2025-06-20', goal: 'Étudier les patterns économiques et produire un tableau de bord.', status: 'Recherche & cadrage', mentor: 'Pr. Ahmad Zarou' }
+        ];
+
+        function getPfaProjects() {
+            try {
+                const savedProjects = localStorage.getItem(pfaStorageKey);
+                return savedProjects ? JSON.parse(savedProjects) : [...defaultPfaProjects];
+            } catch (error) {
+                return [...defaultPfaProjects];
+            }
+        }
+
+        function savePfaProjects(projects) {
+            localStorage.setItem(pfaStorageKey, JSON.stringify(projects));
+        }
+
+        function renderPfaProjects() {
+            const container = document.getElementById('pfaProjectsContainer');
+            if (!container) return;
+
+            const projects = getPfaProjects();
+            if (projects.length === 0) {
+                container.innerHTML = '<div style="padding:18px; background:var(--bg-secondary); border-radius:12px; color:var(--text-secondary);">Aucun projet enregistré pour le moment. Créez votre premier projet pour démarrer le suivi.</div>';
+                return;
+            }
+
+            container.innerHTML = `
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:20px;">
+                    ${projects.map((project, index) => `
+                        <div style="padding:20px; background:var(--bg-secondary); border-radius:12px; border-left:4px solid ${project.type === 'PFE' ? '#3b82f6' : '#10b981'};">
+                            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:12px;">
+                                <div>
+                                    <h4 style="margin:0; color:${project.type === 'PFE' ? '#1e40af' : '#166534'};">${project.title}</h4>
+                                    <p style="margin:6px 0 0 0; font-size:12px; color:var(--text-muted);">${project.domain} · ${project.members} membres</p>
+                                </div>
+                                <span style="background:${project.type === 'PFE' ? '#dbeafe' : '#dcfce7'}; color:${project.type === 'PFE' ? '#1e40af' : '#166534'}; padding:4px 8px; border-radius:6px; font-size:11px; font-weight:600;">${project.type}</span>
+                            </div>
+                            <p style="margin:0 0 12px 0; font-size:13px; color:var(--text-secondary);">${project.goal}</p>
+                            <div style="margin:12px 0;">
+                                <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+                                    <span>Progression</span>
+                                    <span style="font-weight:600; color:${project.type === 'PFE' ? '#3b82f6' : '#10b981'};">${project.progress}%</span>
+                                </div>
+                                <div style="width:100%; height:6px; background:var(--border-light); border-radius:3px; overflow:hidden;">
+                                    <div style="width:${project.progress}%; height:100%; background:${project.type === 'PFE' ? '#3b82f6' : '#10b981'}; border-radius:3px;"></div>
+                                </div>
+                            </div>
+                            <div style="display:flex; flex-wrap:wrap; gap:8px; font-size:12px; color:var(--text-muted); margin:12px 0;">
+                                <span><i class="fas fa-calendar"></i> ${project.deadline}</span>
+                                <span><i class="fas fa-user-tie"></i> ${project.mentor}</span>
+                                <span><i class="fas fa-layer-group"></i> ${project.status}</span>
+                            </div>
+                            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                                <button class="btn-secondary" style="flex:1; min-width:120px;" onclick="openPfaProject(${index})"><i class="fas fa-eye"></i> Détails</button>
+                                <button class="btn-secondary" style="flex:1; min-width:120px;" onclick="updatePfaProjectProgress(${index}, 10)"><i class="fas fa-arrow-up"></i> +10%</button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function createPfaProject() {
+            const title = document.getElementById('pfaProjectTitle').value.trim();
+            const type = document.getElementById('pfaProjectType').value;
+            const domain = document.getElementById('pfaProjectDomain').value;
+            const deadline = document.getElementById('pfaProjectDeadline').value;
+            const members = parseInt(document.getElementById('pfaProjectMembers').value, 10) || 1;
+            const goal = document.getElementById('pfaProjectGoal').value.trim();
+
+            if (!title || !deadline || !goal) {
+                showNotification('Veuillez renseigner le titre, l’objectif et la date limite.', true);
+                return;
+            }
+
+            const projects = getPfaProjects();
+            projects.unshift({
+                title,
+                type,
+                domain,
+                progress: 10,
+                members,
+                deadline,
+                goal,
+                status: 'Initialisation',
+                mentor: 'Mentor à attribuer'
+            });
+
+            savePfaProjects(projects);
+            renderPfaProjects();
+            resetPfaProjectForm();
+            showNotification(`Projet ${type} enregistré avec succès !`);
+        }
+
+        function updatePfaProjectProgress(index, delta) {
+            const projects = getPfaProjects();
+            if (!projects[index]) return;
+
+            projects[index].progress = Math.min(100, projects[index].progress + delta);
+            projects[index].status = projects[index].progress >= 100 ? 'Prêt pour soutenance' : 'En cours de réalisation';
+            savePfaProjects(projects);
+            renderPfaProjects();
+            showNotification(`Progression mise à jour à ${projects[index].progress}%`);
+        }
+
+        function openPfaProject(index) {
+            const project = getPfaProjects()[index];
+            if (!project) return;
+
+            showModal(`Projet ${project.type} · ${project.title}`, `
+                <div style="display:grid; gap:12px; text-align:left;">
+                    <div><strong>Domaine :</strong> ${project.domain}</div>
+                    <div><strong>Membres :</strong> ${project.members}</div>
+                    <div><strong>Date limite :</strong> ${project.deadline}</div>
+                    <div><strong>Encadrant :</strong> ${project.mentor}</div>
+                    <div><strong>Statut :</strong> ${project.status}</div>
+                    <div><strong>Objectif :</strong> ${project.goal}</div>
+                </div>
+            `);
+        }
+
+        function resetPfaProjectForm() {
+            const titleInput = document.getElementById('pfaProjectTitle');
+            const typeSelect = document.getElementById('pfaProjectType');
+            const domainSelect = document.getElementById('pfaProjectDomain');
+            const deadlineInput = document.getElementById('pfaProjectDeadline');
+            const membersInput = document.getElementById('pfaProjectMembers');
+            const goalInput = document.getElementById('pfaProjectGoal');
+
+            if (titleInput) titleInput.value = '';
+            if (typeSelect) typeSelect.value = 'PFA';
+            if (domainSelect) domainSelect.value = 'Informatique';
+            if (deadlineInput) deadlineInput.value = '';
+            if (membersInput) membersInput.value = '4';
+            if (goalInput) goalInput.value = '';
+        }
+
+        function showPfaTemplates() {
+            showModal('Templates PFA/PFE', `
+                <div style="display:grid; gap:12px; text-align:left;">
+                    <div style="padding:12px; background:var(--bg-secondary); border-radius:12px;"><strong>Cahier des charges</strong><br><small>Problématique, objectifs, contraintes, planning.</small></div>
+                    <div style="padding:12px; background:var(--bg-secondary); border-radius:12px;"><strong>Rapport d'avancement</strong><br><small>Contexte, travail réalisé, difficultés, prochaines étapes.</small></div>
+                    <div style="padding:12px; background:var(--bg-secondary); border-radius:12px;"><strong>Slide de soutenance</strong><br><small>Contexte, architecture, démonstration, résultats, perspectives.</small></div>
+                </div>
+            `);
+        }
+
+        function showPfaRoadmap() {
+            showModal('Plan de Soutenance', `
+                <div style="display:grid; gap:12px; text-align:left;">
+                    <div><strong>1. Cadrage :</strong> valider le besoin, le périmètre et les rôles.</div>
+                    <div><strong>2. Prototype :</strong> livrer une première version fonctionnelle et mesurable.</div>
+                    <div><strong>3. Intégration :</strong> stabiliser, tester et préparer la démonstration.</div>
+                    <div><strong>4. Soutenance :</strong> scénario, slides, répétition, questions-réponses.</div>
+                </div>
+            `);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderPfaProjects();
+        });
         function sendAIMessage() {
             const input = document.getElementById('aiInput');
             if(input.value.trim()) { showNotification(`SuperBot: Je traite votre question "${input.value}"...`); input.value = ''; }
