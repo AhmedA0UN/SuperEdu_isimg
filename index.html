@@ -1787,7 +1787,14 @@
                             <span class="ai-suggestion-chip" onclick="sendPresetMessage('Aide-moi à organiser mon temps d\'étude.')">Organisation</span>
                             <span class="ai-suggestion-chip" onclick="sendPresetMessage('Je veux une technique pour réduire mon stress.')">Gestion du stress</span>
                         </div>
-                        <div class="chat-input"><input type="text" id="chatInputModule" placeholder="Écris ton message..."><button id="chatSendModule">Envoyer</button></div>
+                        <div class="chat-input"><input type="text" id="chatInputModule" placeholder="Écris ton message..."><button id="chatVoiceModule" type="button">🎤</button><button id="chatSendModule">Envoyer</button></div>
+                        <div style="display:flex; flex-wrap:wrap; gap:10px; padding:12px 20px 20px;">
+                            <button class="btn-secondary" type="button" onclick="showMentorHistory()">Historique</button>
+                            <button class="btn-secondary" type="button" onclick="clearMentorChat()">Effacer</button>
+                            <button class="btn-secondary" type="button" onclick="exportMentorChat()">Exporter</button>
+                            <button class="btn-secondary" type="button" onclick="mentorQuickPrompt('orientation')">Orientation</button>
+                            <button class="btn-secondary" type="button" onclick="mentorQuickPrompt('stress')">Stress</button>
+                        </div>
                     </div>
                 </div>
 
@@ -3786,10 +3793,27 @@
         });
         function sendAIMessage() {
             const input = document.getElementById('aiInput');
-            if(input.value.trim()) { showNotification(`SuperBot: Je traite votre question "${input.value}"...`); input.value = ''; }
-            else showNotification('Veuillez entrer une question pour SuperBot.');
+            const preview = document.getElementById('chatPreview');
+            const text = input.value.trim();
+            if (!text) {
+                showNotification('Veuillez entrer une question pour SuperBot.');
+                return;
+            }
+
+            const lower = text.toLowerCase();
+            let reply = 'Je peux vous aider sur les révisions, l’orientation, le stress ou la planification. Reformulez votre besoin si nécessaire.';
+            if (lower.includes('stress') || lower.includes('anxiété')) reply = 'Respirez lentement pendant 30 secondes puis définissez une petite action réalisable maintenant.';
+            else if (lower.includes('révision') || lower.includes('cours')) reply = 'Dites-moi la matière et la date de l’examen, je vous prépare un plan de révision précis.';
+            else if (lower.includes('orientation') || lower.includes('métier')) reply = 'Décrivez votre objectif métier et vos compétences actuelles, je vous aiderai à clarifier la suite.';
+            else if (lower.includes('cv') || lower.includes('entretien')) reply = 'Le module Simulation peut générer un CV et une roadmap, et je peux aussi vous aider à formuler vos points forts.';
+
+            if (preview) {
+                preview.innerHTML = `<div style="margin-bottom:8px;"><strong>Vous:</strong> ${text}</div><div style="background:#10b981; color:white; padding:8px; border-radius:8px;"><strong>IA:</strong> ${reply}</div>`;
+            }
+            input.value = '';
+            showNotification('Réponse IA générée !');
         }
-        function startVoiceInput() {
+        function startVoiceInput(targetId = 'aiInput') {
             if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
                 showNotification('La reconnaissance vocale n\'est pas supportée par votre navigateur.');
                 return;
@@ -3805,7 +3829,8 @@
             
             recognition.onresult = function(event) {
                 const transcript = event.results[0][0].transcript;
-                document.getElementById('aiInput').value = transcript;
+                const target = document.getElementById(targetId);
+                if (target) target.value = transcript;
                 showNotification('Message vocal reconnu: "' + transcript + '"');
             };
             
@@ -4777,35 +4802,181 @@
     const chatDiv = document.getElementById('chatMessagesModule');
     const chatInp = document.getElementById('chatInputModule');
     const chatSend = document.getElementById('chatSendModule');
+    const chatVoiceBtn = document.getElementById('chatVoiceModule');
+    const mentorChatKey = 'superedu_mentor_chat_history';
+
+    function sanitizeMentorText(text) {
+        return String(text)
+            .replaceAll('&', '&amp;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;')
+            .replaceAll('"', '&quot;');
+    }
+
+    function getMentorHistory() {
+        try {
+            return JSON.parse(localStorage.getItem(mentorChatKey) || '[]');
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function saveMentorHistory(history) {
+        localStorage.setItem(mentorChatKey, JSON.stringify(history.slice(-60)));
+    }
+
+    function persistMentorMessage(text, sender) {
+        const history = getMentorHistory();
+        history.push({ text, sender, timestamp: new Date().toISOString() });
+        saveMentorHistory(history);
+    }
+
     function addMsg(text, sender) {
         const d = document.createElement('div');
         d.className = `message ${sender}`;
-        d.innerHTML = `<div class="bubble">${text}</div>`;
+        d.innerHTML = `<div class="bubble">${sanitizeMentorText(text)}</div>`;
         chatDiv.appendChild(d);
         chatDiv.scrollTop = chatDiv.scrollHeight;
     }
-    function botReply(userMsg) {
-        let reply = '';
-        const m = userMsg.toLowerCase();
-        if(m.includes('stress') || m.includes('anxiété')) reply = "Respire profondément. Fixe-toi un petit objectif réalisable aujourd'hui.";
-        else if(m.includes('révision') || m.includes('cours')) reply = "Sur quel chapitre veux-tu te concentrer ? Je te propose un résumé.";
-        else if(m.includes('orientation') || m.includes('métier')) reply = "Utilise le module Simulation pour un parcours personnalisé !";
-        else reply = "Je suis là pour t'aider. Dis-moi ce qui te préoccupe (stress, révision, orientation).";
-        setTimeout(() => addMsg(reply, 'bot'), 300);
+
+    function mentorReply(userMsg) {
+        const message = userMsg.toLowerCase();
+        const responses = [
+            { keywords: ['stress', 'anxiété', 'angoisse', 'panique'], reply: "Respire 4 secondes, expire 6 secondes, puis note une seule action simple à faire maintenant. Si tu veux, je peux te faire un plan anti-stress de 10 minutes." },
+            { keywords: ['révision', 'cours', 'exam', 'examen', 'quiz'], reply: "Je peux te proposer un plan de révision ciblé. Donne-moi la matière, la date de l'examen et ton niveau actuel." },
+            { keywords: ['orientation', 'métier', 'emploi', 'carrière'], reply: "Je peux t'aider à clarifier ton parcours. Décris ton domaine, ton objectif et les compétences que tu veux valoriser." },
+            { keywords: ['temps', 'organisation', 'planning', 'agenda'], reply: "On peut construire un planning hebdomadaire avec blocs de travail, pauses et révision espacée. Dis-moi tes heures disponibles." },
+            { keywords: ['motivation', 'fatigue', 'baisse', 'découragé'], reply: "Commence par une tâche de 5 minutes. Le plus dur est de relancer l'élan, pas de tout résoudre d'un coup." },
+            { keywords: ['cv', 'linkedin', 'entretien', 'stage'], reply: "Le module Simulation peut générer un CV et une roadmap, mais je peux aussi t'aider à formuler tes points forts ici." }
+        ];
+
+        const matched = responses.find(item => item.keywords.some(keyword => message.includes(keyword)));
+        if (matched) return matched.reply;
+
+        const questionHints = [
+            'Tu peux me demander un plan de révision, un conseil anti-stress, ou une aide d’orientation.',
+            'Si tu veux, décris ta difficulté en une phrase et je la transforme en action concrète.',
+            'Donne-moi un sujet précis: matière, échéance, ou objectif professionnel.'
+        ];
+        return questionHints[Math.floor(Math.random() * questionHints.length)];
+    }
+
+    function appendMentorExchange(userText, botText) {
+        addMsg(userText, 'user');
+        persistMentorMessage(userText, 'user');
+        setTimeout(() => {
+            addMsg(botText, 'bot');
+            persistMentorMessage(botText, 'bot');
+        }, 250);
+    }
+
+    function sendMentorMessage(text) {
+        const trimmed = (text || '').trim();
+        if (!trimmed) {
+            showNotification('Veuillez écrire un message pour le mentor.');
+            return;
+        }
+        const reply = mentorReply(trimmed);
+        appendMentorExchange(trimmed, reply);
     }
     chatSend.addEventListener('click', () => {
         const txt = chatInp.value.trim();
         if(!txt) return;
-        addMsg(txt, 'user');
         chatInp.value = '';
-        botReply(txt);
+        sendMentorMessage(txt);
     });
     chatInp.addEventListener('keypress', e => { if(e.key === 'Enter') chatSend.click(); });
+    chatVoiceBtn?.addEventListener('click', () => startVoiceInput('chatInputModule'));
 
     function sendPresetMessage(text) {
-        addMsg(text, 'user');
-        setTimeout(() => botReply(text), 300);
+        sendMentorMessage(text);
     }
+
+    function showMentorHistory() {
+        const history = getMentorHistory();
+        const content = history.length ? history.map(item => `
+            <div style="padding:10px; background:${item.sender === 'bot' ? 'var(--bg-secondary)' : '#eff6ff'}; border-radius:12px; margin-bottom:8px; text-align:left;">
+                <strong>${item.sender === 'bot' ? 'Mentor' : 'Vous'} :</strong> ${sanitizeMentorText(item.text)}
+                <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">${new Date(item.timestamp).toLocaleString('fr-FR')}</div>
+            </div>
+        `).join('') : '<div style="color:var(--text-muted);">Aucun message enregistré.</div>';
+        showModal('Historique du Mentor IA', content);
+    }
+
+    function clearMentorChat() {
+        localStorage.removeItem(mentorChatKey);
+        if (chatDiv) {
+            chatDiv.innerHTML = '<div class="message bot"><div class="bubble">🤖 Historique effacé. Parle-moi de tes difficultés (stress, révision, orientation).</div></div>';
+        }
+        showNotification('Historique du mentor effacé.');
+    }
+
+    function exportMentorChat() {
+        const history = getMentorHistory();
+        if (!history.length) {
+            showNotification('Aucun échange à exporter.');
+            return;
+        }
+        const text = history.map(item => `${item.sender === 'bot' ? 'Mentor' : 'Vous'}: ${item.text}`).join('\n');
+        const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'mentor-ia-historique.txt';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+        showNotification('Historique du mentor exporté.');
+    }
+
+    function mentorQuickPrompt(topic) {
+        const prompts = {
+            orientation: 'Je veux clarifier mon orientation et mes choix de métier.',
+            stress: 'Je me sens stressé et j’ai besoin d’un plan simple pour me calmer.',
+            revision: 'Aide-moi à construire un plan de révision efficace pour mes examens.',
+            time: 'Aide-moi à organiser mon temps d’étude cette semaine.'
+        };
+        sendMentorMessage(prompts[topic] || 'Je veux un conseil concret pour avancer aujourd’hui.');
+    }
+
+    function restoreMentorHistory() {
+        if (!chatDiv) return;
+        const history = getMentorHistory();
+        if (!history.length) return;
+        chatDiv.innerHTML = '';
+        history.slice(-20).forEach(item => addMsg(item.text, item.sender));
+    }
+
+    function startMentorVoiceInput() {
+        if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+            showNotification('La reconnaissance vocale n\'est pas supportée par votre navigateur.');
+            return;
+        }
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'fr-FR';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        recognition.onstart = function() {
+            showNotification('Écoute en cours... Parlez maintenant.');
+        };
+
+        recognition.onresult = function(event) {
+            const transcript = event.results[0][0].transcript;
+            if (chatInp) chatInp.value = transcript;
+            showNotification('Message vocal reconnu: "' + transcript + '"');
+        };
+
+        recognition.onerror = function(event) {
+            showNotification('Erreur de reconnaissance vocale: ' + event.error);
+        };
+
+        recognition.start();
+    }
+
+    chatVoiceBtn?.addEventListener('click', startMentorVoiceInput);
+    restoreMentorHistory();
 
     const levelsData = [
         { id: 1, title: "Niveau 1 : Fondamentaux", description: "Maîtrise des bases : variables, types, conditions simples", unlocked: true, completed: false, progress: 0, quiz: { question: "Qu'est-ce qu'une variable ?", options: ["Une valeur qui change", "Un conteneur de données", "Une fonction", "Une classe"], correct: 1, explanation: "Une variable est un conteneur qui stocke une donnée." }, resources: [{title: "Guide des variables en Python", url: "#", type: "pdf"}, {title: "Vidéo : Introduction aux types de données", url: "#", type: "video"}, {title: "Exercices pratiques", url: "#", type: "exercise"}] },
