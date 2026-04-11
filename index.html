@@ -1600,70 +1600,70 @@
                             <option>Relecture CV</option>
                             <option>Prépa entretien</option>
                         </select>
-                        <button class="btn-secondary" onclick="showNotification('Filtres d\'échange appliqués !')" style="white-space:nowrap;">Appliquer</button>
+                        <button class="btn-secondary" onclick="applyExchangeFilters()" style="white-space:nowrap;">Appliquer</button>
                     </div>
 
                     <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:20px;">
-                        <button class="btn-primary" onclick="showNotification('Suggestion d\'échange personnalisé générée !')">Suggestion automatique</button>
-                        <button class="btn-secondary" onclick="showNotification('Invitation à une session de 30 min envoyée !')">Session express 30 min</button>
-                        <button class="btn-secondary" onclick="showNotification('Une équipe de 3 a été proposée !')">Créer équipe de travail</button>
-                        <button class="btn-secondary" onclick="showNotification('Programme de révision partagé !')">Plan de révision</button>
+                        <button class="btn-primary" onclick="suggestExchangeMatch()">Suggestion automatique</button>
+                        <button class="btn-secondary" onclick="startExpressExchangeSession()">Session express 30 min</button>
+                        <button class="btn-secondary" onclick="createExchangeTeam()">Créer équipe de travail</button>
+                        <button class="btn-secondary" onclick="buildExchangeRevisionPlan()">Plan de révision</button>
                     </div>
 
                     <div class="student-list" style="display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-                        <div class="student-card">
+                        <div class="student-card" data-domain="Informatique & IA" data-types="Binôme projet,Relecture CV">
                             <div>
                                 <h4>Sarah M. <span style="font-weight:normal;">(L2 Info)</span></h4>
                                 <div class="skills"><span class="skill-tag">Python</span><span class="skill-tag">Java</span></div>
                                 <p>Offre aide en algo – cherche aide en BD</p>
                                 <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;"><span class="skill-tag">Binôme projet</span><span class="skill-tag">Relecture CV</span></div>
                             </div>
-                            <button class="btn-outline" onclick="showNotif('Contact envoyé à Sarah M.')">Contacter</button>
+                            <button class="btn-outline" onclick="contactExchange('Sarah M.', this)">Contacter</button>
                         </div>
-                        <div class="student-card">
+                        <div class="student-card" data-domain="Ingénierie" data-types="Tutorat,Binôme projet">
                             <div>
                                 <h4>Yacine B. <span style="font-weight:normal;">(L3 Physique)</span></h4>
                                 <div class="skills"><span class="skill-tag">Mécanique</span><span class="skill-tag">Électromag</span></div>
                                 <p>Propose mentorat – cherche maths et optimisation.</p>
                                 <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;"><span class="skill-tag">Tutoring</span><span class="skill-tag">Projet</span></div>
                             </div>
-                            <button class="btn-outline" onclick="showNotif('Contact envoyé à Yacine B.')">Contacter</button>
+                            <button class="btn-outline" onclick="contactExchange('Yacine B.', this)">Contacter</button>
                         </div>
-                        <div class="student-card">
+                        <div class="student-card" data-domain="Gestion & Finance" data-types="Binôme projet,Tutorat">
                             <div>
                                 <h4>Inès L. <span style="font-weight:normal;">(L1 Éco)</span></h4>
                                 <div class="skills"><span class="skill-tag">Statistiques</span><span class="skill-tag">Excel</span></div>
                                 <p>Cherche binôme pour tests d'hypothèses et présentation de données.</p>
                                 <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;"><span class="skill-tag">Analyse</span><span class="skill-tag">Data Viz</span></div>
                             </div>
-                            <button class="btn-outline" onclick="showNotif('Contact envoyé à Inès L.')">Contacter</button>
+                            <button class="btn-outline" onclick="contactExchange('Inès L.', this)">Contacter</button>
                         </div>
-                        <div class="student-card">
+                        <div class="student-card" data-domain="Gestion & Finance" data-types="Tutorat,Prépa entretien">
                             <div>
                                 <h4>Rania K. <span style="font-weight:normal;">(L3 Finance)</span></h4>
                                 <div class="skills"><span class="skill-tag">Excel</span><span class="skill-tag">Business Case</span></div>
                                 <p>Propose séance de cas pratiques – cherche aide sur modélisation.</p>
                                 <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;"><span class="skill-tag">Cas pratique</span><span class="skill-tag">Prépa entretien</span></div>
                             </div>
-                            <button class="btn-outline" onclick="showNotif('Contact envoyé à Rania K.')">Contacter</button>
+                            <button class="btn-outline" onclick="contactExchange('Rania K.', this)">Contacter</button>
                         </div>
-                        <div class="student-card">
+                        <div class="student-card" data-domain="Soft Skills" data-types="Prépa entretien,Relecture CV">
                             <div>
                                 <h4>Meriem S. <span style="font-weight:normal;">(L2 Marketing)</span></h4>
                                 <div class="skills"><span class="skill-tag">Marketing digital</span><span class="skill-tag">Copywriting</span></div>
                                 <p>Propose feedback sur pitch commercial – cherche aide analyse UX.</p>
                                 <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;"><span class="skill-tag">Pitch</span><span class="skill-tag">Revue portfolio</span></div>
                             </div>
-                            <button class="btn-outline" onclick="showNotif('Contact envoyé à Meriem S.')">Contacter</button>
+                            <button class="btn-outline" onclick="contactExchange('Meriem S.', this)">Contacter</button>
                         </div>
-                        <div class="student-card">
+                        <div class="student-card" data-domain="Soft Skills" data-types="Binôme projet,Relecture CV">
                             <div>
                                 <h4>Anis D. <span style="font-weight:normal;">(L3 Design)</span></h4>
                                 <div class="skills"><span class="skill-tag">UX/UI</span><span class="skill-tag">Figma</span></div>
                                 <p>Cherche pair pour critique de prototype – offre conseils sur storytelling.</p>
                                 <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;"><span class="skill-tag">Design</span><span class="skill-tag">Storytelling</span></div>
                             </div>
-                            <button class="btn-outline" onclick="showNotif('Contact envoyé à Anis D.')">Contacter</button>
+                            <button class="btn-outline" onclick="contactExchange('Anis D.', this)">Contacter</button>
                         </div>
                     </div>
 
@@ -1680,17 +1680,17 @@
                         <div class="widget" style="padding:20px; border-radius:24px; background:#ffffff; border:1px solid rgba(15,23,42,0.08);">
                             <h4 style="margin-bottom:12px;">Nouveaux formats d’échange</h4>
                             <div style="display:flex; flex-direction:column; gap:10px;">
-                                <button class="btn-primary" onclick="showNotification('Proposition d\'atelier envoyée !')">Atelier collaboratif</button>
-                                <button class="btn-secondary" onclick="showNotification('Proposition de duo de projet envoyée !')">Duo projet</button>
-                                <button class="btn-secondary" onclick="showNotification('Invitation à une session mock interview envoyée !')">Mock interview</button>
+                                <button class="btn-primary" onclick="createExchangeFormat('atelier')">Atelier collaboratif</button>
+                                <button class="btn-secondary" onclick="createExchangeFormat('duo')">Duo projet</button>
+                                <button class="btn-secondary" onclick="createExchangeFormat('mock')">Mock interview</button>
                             </div>
                         </div>
                         <div class="widget" style="padding:20px; border-radius:24px; background:#fefce8; border:1px solid rgba(245,158,11,0.18);">
                             <h4 style="margin-bottom:12px;">Rappels & salons</h4>
                             <div style="display:flex; flex-direction:column; gap:10px;">
-                                <button class="btn-secondary" onclick="showNotification('Session live programmée !')">Salon d’échange en direct</button>
-                                <button class="btn-secondary" onclick="showNotification('Mini-club de pair programming créé !')">Cercle de pair programming</button>
-                                <button class="btn-secondary" onclick="showNotification('Sujet de discussion proposé !')">Proposer un thème</button>
+                                <button class="btn-secondary" onclick="openExchangeLiveRoom()">Salon d’échange en direct</button>
+                                <button class="btn-secondary" onclick="createPairProgrammingCircle()">Cercle de pair programming</button>
+                                <button class="btn-secondary" onclick="proposeExchangeTopic()">Proposer un thème</button>
                             </div>
                         </div>
                     </div>
@@ -4829,6 +4829,164 @@
     }
 
     function showNotif(msg) { showNotification(msg); }
+
+    const exchangeContactsKey = 'superedu_exchange_contacts';
+
+    function getExchangeCards() {
+        return Array.from(document.querySelectorAll('#module-echange .student-card'));
+    }
+
+    function normalizeTypeValue(value) {
+        const map = {
+            'Tous types': '',
+            'Binôme projet': 'binome projet',
+            'Tutorat': 'tutorat',
+            'Relecture CV': 'relecture cv',
+            'Prépa entretien': 'prepa entretien'
+        };
+        return (map[value] || '').toLowerCase();
+    }
+
+    function applyExchangeFilters() {
+        const domain = document.getElementById('exchangeDomain')?.value || 'Tous les domaines';
+        const type = normalizeTypeValue(document.getElementById('exchangeType')?.value || 'Tous types');
+        let visibleCount = 0;
+
+        getExchangeCards().forEach(card => {
+            const cardDomain = (card.dataset.domain || '').toLowerCase();
+            const cardTypes = (card.dataset.types || '').toLowerCase();
+            const domainMatch = domain === 'Tous les domaines' || cardDomain === domain.toLowerCase();
+            const typeMatch = !type || cardTypes.includes(type);
+            const visible = domainMatch && typeMatch;
+            card.style.display = visible ? '' : 'none';
+            if (visible) visibleCount += 1;
+        });
+
+        showNotification(`Filtres appliqués: ${visibleCount} profil(s) trouvé(s).`);
+    }
+
+    function contactExchange(name, button) {
+        const contacts = JSON.parse(localStorage.getItem(exchangeContactsKey) || '[]');
+        if (!contacts.includes(name)) {
+            contacts.push(name);
+            localStorage.setItem(exchangeContactsKey, JSON.stringify(contacts));
+        }
+        if (button) {
+            button.textContent = 'Invité ✓';
+            button.disabled = true;
+            button.style.opacity = '0.7';
+        }
+        showNotification(`Contact envoyé à ${name}.`);
+    }
+
+    function suggestExchangeMatch() {
+        const visibleCards = getExchangeCards().filter(card => card.style.display !== 'none');
+        if (!visibleCards.length) {
+            showNotification('Aucun profil disponible avec les filtres actuels.');
+            return;
+        }
+
+        const picked = visibleCards[Math.floor(Math.random() * visibleCards.length)];
+        const name = picked.querySelector('h4')?.textContent?.split('(')[0].trim() || 'Profil recommandé';
+        const desc = picked.querySelector('p')?.textContent || '';
+        const skills = Array.from(picked.querySelectorAll('.skills .skill-tag')).map(tag => tag.textContent).join(', ');
+
+        showModal('Suggestion automatique', `
+            <div style="display:grid; gap:10px; text-align:left;">
+                <div><strong>Profil recommandé:</strong> ${name}</div>
+                <div><strong>Compétences:</strong> ${skills}</div>
+                <div><strong>Objectif:</strong> ${desc}</div>
+                <button class="btn-primary" onclick="contactExchange('${name}', null)">Contacter ce profil</button>
+            </div>
+        `);
+    }
+
+    function startExpressExchangeSession() {
+        const visibleCards = getExchangeCards().filter(card => card.style.display !== 'none').slice(0, 2);
+        if (visibleCards.length < 2) {
+            showNotification('Pas assez de profils pour lancer une session express.');
+            return;
+        }
+        const names = visibleCards.map(card => card.querySelector('h4')?.textContent?.split('(')[0].trim() || 'Participant');
+        showModal('Session express 30 min', `
+            <div style="display:grid; gap:10px; text-align:left;">
+                <div><strong>Participants proposés:</strong> ${names.join(' + ')}</div>
+                <div><strong>Format:</strong> 10 min présentation, 15 min échange, 5 min plan d'action</div>
+                <button class="btn-primary" onclick="showNotification('Invitation à la session express envoyée.')">Envoyer l'invitation</button>
+            </div>
+        `);
+    }
+
+    function createExchangeTeam() {
+        const visibleCards = getExchangeCards().filter(card => card.style.display !== 'none').slice(0, 3);
+        if (!visibleCards.length) {
+            showNotification('Aucun profil disponible pour créer une équipe.');
+            return;
+        }
+        const names = visibleCards.map(card => card.querySelector('h4')?.textContent?.split('(')[0].trim() || 'Membre');
+        showModal('Équipe de travail proposée', `
+            <div style="display:grid; gap:10px; text-align:left;">
+                <div><strong>Équipe:</strong> ${names.join(', ')}</div>
+                <div><strong>Objectif:</strong> sprint de 48h avec revue finale</div>
+                <button class="btn-primary" onclick="showNotification('Équipe créée et invitations envoyées.')">Créer l'équipe</button>
+            </div>
+        `);
+    }
+
+    function buildExchangeRevisionPlan() {
+        const domain = document.getElementById('exchangeDomain')?.value || 'Tous les domaines';
+        const type = document.getElementById('exchangeType')?.value || 'Tous types';
+        showModal('Plan de révision partagé', `
+            <div style="display:grid; gap:10px; text-align:left;">
+                <div><strong>Domaine ciblé:</strong> ${domain}</div>
+                <div><strong>Type d'échange:</strong> ${type}</div>
+                <div><strong>Plan suggéré:</strong> 3 sessions/semaine, 45 min, alternance théorie-pratique.</div>
+                <button class="btn-primary" onclick="showNotification('Plan de révision partagé avec les profils sélectionnés.')">Partager</button>
+            </div>
+        `);
+    }
+
+    function createExchangeFormat(format) {
+        const labels = {
+            atelier: 'Atelier collaboratif',
+            duo: 'Duo projet',
+            mock: 'Mock interview'
+        };
+        showNotification(`${labels[format] || 'Format'} proposé et invitations envoyées.`);
+    }
+
+    function openExchangeLiveRoom() {
+        showModal('Salon d’échange en direct', `
+            <div style="display:grid; gap:10px; text-align:left;">
+                <div><strong>Salon créé:</strong> Échange compétences - Live Room</div>
+                <div><strong>Horaire:</strong> Ce soir, 19:00 - 20:00</div>
+                <button class="btn-primary" onclick="showNotification('Session live programmée et lien envoyé.')">Programmer</button>
+            </div>
+        `);
+    }
+
+    function createPairProgrammingCircle() {
+        showNotification('Mini-club de pair programming créé (6 places ouvertes).');
+    }
+
+    function proposeExchangeTopic() {
+        const topic = prompt('Propose un thème d’échange :');
+        if (!topic || !topic.trim()) return;
+        showNotification(`Thème proposé: "${topic.trim()}".`);
+    }
+
+    function initExchangeContactsState() {
+        const contacts = JSON.parse(localStorage.getItem(exchangeContactsKey) || '[]');
+        getExchangeCards().forEach(card => {
+            const name = card.querySelector('h4')?.textContent?.split('(')[0].trim();
+            const button = card.querySelector('button.btn-outline');
+            if (name && button && contacts.includes(name)) {
+                button.textContent = 'Invité ✓';
+                button.disabled = true;
+                button.style.opacity = '0.7';
+            }
+        });
+    }
     document.querySelectorAll('.video-card').forEach(c => c.addEventListener('click', () => showNotif('Lecture vidéo')));
 
     // Fonctions du module Motivation
@@ -4887,6 +5045,7 @@
             getNewQuote();
             updateCurrentDate();
         }
+        initExchangeContactsState();
     });
 
     // Fonctions avancées du module Motivation (inspirées de Notion)
