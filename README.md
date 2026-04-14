@@ -9,6 +9,7 @@ Plateforme web educative orientee vers l'apprentissage, la collaboration academi
 - [Public cible](#public-cible)
 - [Fonctionnalites](#fonctionnalites)
 - [Apercu des pages](#apercu-des-pages)
+- [Captures d'ecran](#captures-decran)
 - [Structure du projet](#structure-du-projet)
 - [Demarrage rapide](#demarrage-rapide)
 - [Utilisation](#utilisation)
@@ -53,6 +54,21 @@ Super_Edu a pour but d'aider les etudiants a renforcer leurs competences academi
 - `Wpages/mentor IA.html` : espace dedie au mentor IA.
 - `Wpages/prototype.html` : version/prototype d'interface.
 - `Wpages/weeeelcom.html` : page d'accueil alternative.
+
+## Captures d'ecran
+
+### Vue principale
+
+![Super_Edu - Vue principale](src/v1.png)
+
+### Galerie
+
+![Super_Edu - Ecran 2](src/v2.png)
+![Super_Edu - Ecran 3](src/v3.png)
+![Super_Edu - Dashboard 1](src/d1.png)
+![Super_Edu - Dashboard 2](src/d2.png)
+![Super_Edu - Dashboard 3](src/d3.png)
+![Super_Edu - Certification](imgs/superedu-cert.png)
 
 ## Structure du projet
 
