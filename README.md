@@ -1,4 +1,4 @@
-# SuperEdu
+# superedu
 
 ### 🎓 Objectif principal  
 Aider les étudiants à **améliorer et perfectionner leurs compétences** grâce à une plateforme en ligne interactive et complète.  
