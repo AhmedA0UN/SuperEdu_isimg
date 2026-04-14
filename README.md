@@ -1,49 +1,80 @@
 # Super_Edu
 
-### 🎓 Objectif principal  
-Aider les étudiants à **améliorer et perfectionner leurs compétences** grâce à une plateforme en ligne interactive et complète.  
+Plateforme web educative orientee vers l'apprentissage, la collaboration academique et l'accompagnement des etudiants.
 
----
+## Objectif
 
-### 📹 Contenu pédagogique  
-- **Vidéos courtes** : explications, applications pratiques, exemples réels  
-- **Cours avancés** : avec guides de projets  
-- **Développement personnel et professionnel** :  
-  - Affaires, entrepreneuriat, micro/macroéconomie  
-  - Pensée critique, créativité  
-  - Compétences numériques et sociales  
-  - Techniques RH, gestion du travail/projet, leadership  
-  - Pédagogie d’enseignement (**prioritaire**)  
+Super_Edu a pour but d'aider les etudiants a renforcer leurs competences academiques et professionnelles via une experience numerique moderne.
 
----
+## Fonctionnalites
 
-### 🤝 Collaboration  
-- Espaces de travail collaboratif :  
-  - Étudiants ↔ Étudiants  
-  - Étudiants ↔ Enseignants  
-  - Enseignants ↔ Enseignants  
+- Parcours de contenu pedagogique (videos, cours, supports).
+- Espaces de collaboration entre etudiants et enseignants.
+- Accompagnement autour du developpement personnel et professionnel.
+- Integration d'un assistant IA pour guider l'apprentissage.
 
----
+## Apercu des pages
 
-### 🧠 Soutien psychologique  
-- Séances/visites avec psychologues :  
-  - Enseignants ↔ Psychologues  
-  - Étudiants ↔ Psychologues  
+- `index.html` : point d'entree principal de l'interface.
+- `Wpages/certification.html` : informations liees aux certifications.
+- `Wpages/conseils.html` : conseils et recommandations.
+- `Wpages/mentor IA.html` : espace dedie au mentor IA.
+- `Wpages/prototype.html` : version/prototype d'interface.
+- `Wpages/weeeelcom.html` : page d'accueil alternative.
 
----
+## Structure du projet
 
-### 🤖 Agent AI intégré  
-- Facilite l’étude des étudiants :  
-  - Assistance personnalisée  
-  - Réponses rapides aux questions  
-  - Orientation vers les bons contenus  
+```text
+Super_Edu/
+|-- index.html
+|-- README.md
+|-- config/
+|-- imgs/
+|-- media/
+|-- src/
+|   |-- presentaions/
+|   `-- video/
+`-- Wpages/
+```
 
----
+## Lancer le projet en local
 
-👉 **En résumé** :  
-**SuperEdu** est une plateforme éducative hybride qui combine **cours interactifs, développement personnel, collaboration académique et soutien psychologique**, enrichie par un **agent AI** pour guider les étudiants dans leur parcours.
+Ce projet est statique (HTML/CSS/JS) et ne necessite pas de build complexe.
 
----
+1. Cloner le depot.
+2. Ouvrir le dossier dans VS Code.
+3. Lancer `index.html` avec une extension de serveur local (exemple : Live Server) ou ouvrir directement le fichier dans le navigateur.
 
-### 📄 Licence
-Ce projet est distribué sous une tri-licence au choix : **GPL-3.0-or-later**, **MIT** ou **Apache-2.0**. Voir le fichier `LICENCE` et les notices de licence dans `LICENSE-GPL-3.0-or-later`, `LICENSE-MIT` et `LICENSE-APACHE-2.0`.
+## Technologies
+
+- HTML5
+- CSS3
+- JavaScript (vanilla)
+- Font Awesome (CDN)
+- Google Fonts (CDN)
+
+## Roadmap (proposition)
+
+- Ajouter une architecture frontend modulaire.
+- Connecter les contenus a une API backend.
+- Mettre en place un systeme d'authentification.
+- Ajouter des tests de non-regression UI.
+
+## Contribution
+
+Les contributions sont bienvenues.
+
+1. Fork du projet
+2. Creation d'une branche de fonctionnalite
+3. Commit des modifications
+4. Ouverture d'une pull request
+
+## Licence
+
+Ce projet est distribue sous tri-licence au choix :
+
+- GPL-3.0-or-later
+- MIT
+- Apache-2.0
+
+Voir les fichiers `LICENCE`, `LICENSE-GPL-3.0-or-later`, `LICENSE-MIT` et `LICENSE-APACHE-2.0`.
